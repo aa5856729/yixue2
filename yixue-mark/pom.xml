@@ -18,6 +18,11 @@
             <artifactId>yixue-pojo</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.yixue.loxc</groupId>
+            <artifactId>yixue-commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

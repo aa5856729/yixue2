@@ -1,6 +1,8 @@
 package com.yixue.loxc.pojo;
 
 
+import java.io.Serializable;
+
 public class TBorrow {
 
   private String id;
