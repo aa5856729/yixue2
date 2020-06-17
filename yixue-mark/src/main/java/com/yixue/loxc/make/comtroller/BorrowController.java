@@ -69,13 +69,11 @@ public class BorrowController {
     }
 
     @PostMapping("/add")
-    public Result<Object> add(TBorrowEntity tBorrow,HttpSession sessionStorage){
-
-        TUserAccountEntity tUserAccount = (TUserAccountEntity)sessionStorage.getAttribute("user");
-        System.out.println(tUserAccount);
+    public Result<Object> add(TBorrowEntity tBorrow){
 
         tBorrow.setId(UUID.randomUUID().toString().substring(0,31));
         System.out.println(tBorrow);
+
 //        if(tBorrow == null){
 //            return new Result(222,"错误，未能获取到表单数据");
 //        }
