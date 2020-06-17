@@ -1,6 +1,7 @@
 package com.yixue.loxc.make.dao;
 
 import com.yixue.loxc.pojo.TBorrow;
+import com.yixue.loxc.pojo.TBorrowEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,4 +24,18 @@ public interface BorrowDao {
      * @return
      */
     public Integer getTBorrowByCount(Map<String,Object> param);
+
+    /**
+     * 根据id查询
+     * @param borrowId
+     * @return
+     */
+    public TBorrow getBorrowById(String borrowId);
+
+    /**
+     * 增加
+     * @param tBorrow
+     * @return
+     */
+    public Integer setTBorrow(TBorrowEntity tBorrow);
 }

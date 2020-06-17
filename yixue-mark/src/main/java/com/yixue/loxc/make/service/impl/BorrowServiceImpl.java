@@ -6,9 +6,11 @@ import com.yixue.loxc.commons.Page;
 import com.yixue.loxc.make.dao.BorrowDao;
 import com.yixue.loxc.make.service.BorrowService;
 import com.yixue.loxc.pojo.TBorrow;
+import com.yixue.loxc.pojo.TBorrowEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,5 +36,20 @@ public class BorrowServiceImpl implements BorrowService {
         page.setListData(tBorrowList);
 
         return page;
+    }
+
+    @Override
+    public TBorrow getBorrowById(String borrowId) {
+        return borrowDao.getBorrowById(borrowId);
+    }
+
+    @Override
+    public boolean setTBorrow(TBorrowEntity tBorrow) {
+
+        Integer num = borrowDao.setTBorrow(tBorrow);
+        if (num > 0) {
+            return true;
+        }
+        return false;
     }
 }
