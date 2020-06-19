@@ -8,8 +8,6 @@ import com.yixue.loxc.vo.QueryObject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +35,7 @@ public class BorrowController {
             param.put("borrowState",queryObject.getBorrowStates());
         }
         if (queryObject != null){
-            if (queryObject.getBeginDate()!= null ){
+            if (queryObject.getBeginDate()!= null && queryObject.getEndDate() != null){
                 param.put("beginDate",queryObject.getBeginDate().toString());
                 param.put("endDate",queryObject.getEndDate().toString());
             }

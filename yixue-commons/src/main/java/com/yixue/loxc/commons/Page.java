@@ -19,7 +19,7 @@ public class Page<T> {
     /**
      * 总记录数 .
      */
-    private Integer totalPage;
+    private Integer total;
     /**
      * 每页行数 .
      */
@@ -27,7 +27,7 @@ public class Page<T> {
     /**
      * 页面的总数  .
      */
-    private Integer pageCount;
+    private Integer totalPage;
     /**
      * 结果集中数据的起始位置  .
      */
@@ -52,16 +52,16 @@ public class Page<T> {
     }
     /**
      * @param curpage .
-     * @param totalPage
+     * @param total
      * @param pagesize .
      */
-    public Page(int curpage,Integer pagesize,Integer totalPage) {
+    public Page(int curpage,Integer pagesize,Integer total) {
         super();
         this.currentPage = curpage;//当前页码
-        this.totalPage = totalPage;//总记录数
+        this.total = total;//总记录数
         this.pageSize = pagesize;//页码容量
         //总页数=总记录数total/pageSize（+1）
-        this.pageCount = (totalPage + this.pageSize - 1) /this.pageSize;
+        this.totalPage = (total + this.pageSize - 1) /this.pageSize;
         //下标起始位置：(curPage-1)*pageSize
         this.beginPos = (currentPage-1)*pageSize;
     }
@@ -69,8 +69,8 @@ public class Page<T> {
      * 总页面数 .
      * @return Integer .
      */
-    public Integer getPageCount() {
-        return pageCount;
+    public Integer getTotalPage() {
+        return totalPage;
     }
     /**
      *  得到页面的当前位置 .
@@ -107,7 +107,7 @@ public class Page<T> {
      *            the rowCount to set
      */
     public void setRowCount(Integer rowCount) {
-        this.totalPage = rowCount;
+        this.total = rowCount;
     }
 
     /**
@@ -117,16 +117,16 @@ public class Page<T> {
     public void setBeginPos(Integer beginPos) {
         this.beginPos = beginPos;
     }
-    public Integer getTotalPage() {
-        return totalPage;
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
     }
 
     public void setTotalPage(Integer totalPage) {
         this.totalPage = totalPage;
-    }
-
-    public void setPageCount(Integer pageCount) {
-        this.pageCount = pageCount;
     }
 
     public Integer getCurrentPage() {

@@ -90,10 +90,10 @@
                 and create_time > #{beginDate} and create_time &lt; #{endDate}
             </if>
         </trim>
-        <if test="beginPos != null and beginPos != '' and pageSize != null and pageSize != ''">
+        order by create_time desc
+        <if test="beginPos != null and pageSize != null and pageSize != ''">
             limit #{beginPos},#{pageSize}
         </if>
-        order by create_time desc
     </select>
 
     <select id="getTBorrowByCount" resultType="Integer" parameterType="java.util.Map">

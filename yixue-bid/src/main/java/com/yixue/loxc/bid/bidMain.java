@@ -1,4 +1,4 @@
-package com.yixue.loxc.dao.bid;
+package com.yixue.loxc.bid;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
