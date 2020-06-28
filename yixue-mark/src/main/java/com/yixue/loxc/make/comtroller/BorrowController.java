@@ -21,11 +21,13 @@ public class BorrowController {
     @Resource
     private BorrowService borrowService;
 
-
     
     @PostMapping("/query")
     public Result<TBorrow> BorrowQuery(QueryObject queryObject){
         Map<String,Object> param = new HashMap<String,Object>();
+
+
+
 
         if(!"".equals(queryObject.getUserId())){
             param.put("userId",queryObject.getUserId());
