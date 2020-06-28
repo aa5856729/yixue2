@@ -32,7 +32,6 @@ public class TBidServiceImpl implements TBidService {
         param.put("pageSize",page.getPageSize());
 
         List<TBidEntity> tBidEntityList = tBidDao.getTBidByList(param);
-        System.out.println(tBidEntityList.size());
 
         page.setListData(tBidEntityList);
 
