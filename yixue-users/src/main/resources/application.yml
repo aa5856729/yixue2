@@ -1,28 +1,26 @@
 server:
-  port: 8081
+  port: 8080
 
 spring:
   application:
-    name: yixue-make
+    name: yixue-users
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource      #当前数据源操作类型
     driver-class-name: com.mysql.jdbc.Driver      #mysql驱动包
-    url: jdbc:mysql://localhost:3306/t?serverTimezone=UTC&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/yixue?serverTimezone=UTC&characterEncoding=utf-8
     username: root
     password: 123456
-  redis:
-    host: localhost
-    database: 0
-    port: 6379
-    password: 123456
-    lettuce:
-      pool:
-        max-active: 8
-        max-idle: 8
-        max-wait: -1ms
-        min-idle: 8
 
-
+  jackson:
+    date-format: yyyy-MM-dd HH-mm-ss
+    time-zone: Asia/Shanghai
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.yixue.loxc.user.dao
+logging:
+  level:
+    root: info
 mybatis:
     mapper-locations: classpath:mapper/*.xml
     type-aliases-package: com.yixue.loxc.pojo.*      #所有Entity别名类所在包
+

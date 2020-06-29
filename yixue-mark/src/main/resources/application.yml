@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   application:
@@ -7,7 +7,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource      #当前数据源操作类型
     driver-class-name: com.mysql.jdbc.Driver      #mysql驱动包
-    url: jdbc:mysql://localhost:3306/t?serverTimezone=UTC&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/yixue?serverTimezone=UTC&characterEncoding=utf-8
     username: root
     password: 123456
   jackson:
