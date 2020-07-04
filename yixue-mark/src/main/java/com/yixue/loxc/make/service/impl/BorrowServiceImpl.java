@@ -46,10 +46,15 @@ public class BorrowServiceImpl implements BorrowService {
     @Override
     public boolean setTBorrow(TBorrowEntity tBorrow) {
 
-        Integer num = borrowDao.setTBorrow(tBorrow);
-        if (num > 0) {
-            return true;
-        }
+        tBorrow.setApplyTime(new Date());
+        tBorrow.setCreateTime(new Date());
+
+        System.out.println(tBorrow);
+
+//        Integer num = borrowDao.setTBorrow(tBorrow);
+//        if (num > 0) {
+//            return true;
+//        }
         return false;
     }
 }
