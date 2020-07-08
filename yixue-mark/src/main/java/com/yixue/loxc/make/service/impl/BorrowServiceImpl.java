@@ -5,11 +5,12 @@ import com.yixue.loxc.commons.EmptyUtils;
 import com.yixue.loxc.commons.Page;
 import com.yixue.loxc.make.dao.BorrowDao;
 import com.yixue.loxc.make.service.BorrowService;
-import com.yixue.loxc.pojo.TBorrow;
 import com.yixue.loxc.pojo.TBorrowEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class BorrowServiceImpl implements BorrowService {
         param.put("beginPos",page.getBeginPos());
         param.put("pageSize",page.getPageSize());
 
-        List<TBorrow> tBorrowList = borrowDao.getTBorrowByList(param);
+        List<TBorrowEntity> tBorrowList = borrowDao.getTBorrowByList(param);
 
         page.setListData(tBorrowList);
 
@@ -39,22 +40,22 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public TBorrow getBorrowById(String borrowId) {
+    public TBorrowEntity getBorrowById(String borrowId) {
         return borrowDao.getBorrowById(borrowId);
     }
 
     @Override
     public boolean setTBorrow(TBorrowEntity tBorrow) {
+        Calendar calendar = Calendar.getInstance();
 
-        tBorrow.setApplyTime(new Date());
-        tBorrow.setCreateTime(new Date());
+        tBorrow.setApplyTime(calendar.getTime());
+        tBorrow.setCreateTime(calendar.getTime());
 
-        System.out.println(tBorrow);
 
-//        Integer num = borrowDao.setTBorrow(tBorrow);
-//        if (num > 0) {
-//            return true;
-//        }
+        Integer num = borrowDao.setTBorrow(tBorrow);
+        if (num > 0) {
+            return true;
+        }
         return false;
     }
 }

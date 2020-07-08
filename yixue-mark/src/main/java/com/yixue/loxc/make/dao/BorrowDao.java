@@ -17,7 +17,7 @@ public interface BorrowDao {
      * @param
      * @return
      */
-    public List<TBorrow> getTBorrowByList(Map<String,Object> param);
+    public List<TBorrowEntity> getTBorrowByList(Map<String,Object> param);
 
     /**
      * 查询总行数
@@ -30,7 +30,7 @@ public interface BorrowDao {
      * @param borrowId
      * @return
      */
-    public TBorrow getBorrowById(String borrowId);
+    public TBorrowEntity getBorrowById(String borrowId);
 
     /**
      * 增加

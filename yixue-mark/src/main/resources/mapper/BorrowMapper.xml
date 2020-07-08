@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yixue.loxc.make.dao.BorrowDao">
-    <select id="getTBorrowByList" resultType="com.yixue.loxc.pojo.TBorrow" parameterType="java.util.Map">
+    <select id="getTBorrowByList" resultType="com.yixue.loxc.pojo.TBorrowEntity" parameterType="java.util.Map">
         SELECT id as id
             ,borrow_user_id as borrowUserId
             ,borrow_username as borrowUsername
@@ -165,7 +165,7 @@
           </trim>
     </select>
 
-    <select id="getBorrowById" resultType="com.yixue.loxc.pojo.TBorrow" parameterType="String">
+    <select id="getBorrowById" resultType="com.yixue.loxc.pojo.TBorrowEntity" parameterType="String">
         select
             id as id
             ,borrow_user_id as borrowUserId
