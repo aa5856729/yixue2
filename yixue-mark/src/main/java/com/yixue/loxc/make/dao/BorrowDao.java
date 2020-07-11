@@ -38,4 +38,11 @@ public interface BorrowDao {
      * @return
      */
     public Integer setTBorrow(TBorrowEntity tBorrow);
+
+    /**
+     * 修改
+     * @param tBorrowEntity
+     * @return
+     */
+    public Integer updateTBorrow(TBorrowEntity tBorrowEntity);
 }

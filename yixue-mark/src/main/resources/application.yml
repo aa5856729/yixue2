@@ -13,19 +13,17 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: Asia/Shanghai
-  redis:
-    host: localhost
-    database: 0
-    port: 6379
-    password: 123456
-    lettuce:
-      pool:
-        max-active: 8
-        max-idle: 8
-        max-wait: -1ms
-        min-idle: 8
+
 
 mybatis:
     mapper-locations: classpath:mapper/*.xml
     type-aliases-package: com.yixue.loxc.pojo.*      #所有Entity别名类所在包
+
+logging:
+  level:
+    com:
+      yixue:
+        loxc:
+          mark:
+            dao: debug
 

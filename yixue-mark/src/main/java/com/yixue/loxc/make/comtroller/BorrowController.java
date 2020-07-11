@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -66,29 +67,30 @@ public class BorrowController {
 
     }
 
-    @PostMapping("/add")
-    public Result<Object> add(TBorrowEntity tBorrow){
-
-        tBorrow.setId(UUID.randomUUID().toString().substring(0,31));
-        tBorrow.setTotalInterest((tBorrow.getBorrowAmount() * tBorrow.getYearRate()) / 100 + tBorrow.getBorrowAmount());
-        tBorrow.setBorrowType(1);                                               //借款类型
-        tBorrow.setBorrowState(10);                                             //申请审核中
-        tBorrow.setBidNum(0);                                                   //已投标数量
-        tBorrow.setCurrentBidAmount(Integer.toUnsignedLong(0));             //当前已投标金额
-        tBorrow.setCurrentBidInterest(Integer.toUnsignedLong(0));           //当前已投标利息
-
-        if(tBorrow == null){
-            return new Result(222,"错误，未能获取到表单数据");
-        }
-        try{
-            if (borrowService.setTBorrow(tBorrow)){
-                return new Result(200,"数据添加成功！");
-            }else{
-                return new Result(223,"数据添加失败！");
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            return new Result(224,"报错，请通知管理员");
-        }
-    }
+//    @PostMapping("/add")
+//    public Result<Object> add(TBorrowEntity tBorrow){
+//        if(tBorrow == null){
+//            return new Result(222,"错误，未能获取到表单数据");
+//        }
+//        try{
+//            if (borrowService.setTBorrow(tBorrow)){
+//                return new Result(200,"数据添加成功！");
+//            }else{
+//                return new Result(223,"数据添加失败！");
+//            }
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            return new Result(224,"报错，请通知管理员");
+//        }
+//    }
+//
+//    @PostMapping("/audit")
+//    public Result<Object> Audit(@RequestParam("borrowId")String borrowId,@RequestParam("borrowState")String borrowState){
+//
+//        if(borrowService.updateTBorrow(borrowId,borrowState)){
+//            return new Result(200,"操作成功");
+//        }else{
+//            return new Result(222,"异常，操作失败！");
+//        }
+//    }
 }

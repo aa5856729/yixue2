@@ -31,4 +31,11 @@ public interface BorrowService {
      * @return
      */
     public boolean setTBorrow(TBorrowEntity tBorrow);
+
+    /**
+     * 修改
+     * @param
+     * @return
+     */
+    public boolean updateTBorrow(String borrowId,String borrowState);
 }
