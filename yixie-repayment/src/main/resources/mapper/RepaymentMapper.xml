@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yixue.loxc.repayment.dao.RepaymentMapper">
+    <select id="getRepaymentList" resultType="com.yixue.loxc.pojo.TRepayment" parameterType="java.util.Map">
+        SELECT
+        ID,BORROW_ID,BORROW_USER_ID,BORROW_TITLE,DEADLINE,
+        REPAYMENT_TIME,TOTAL_AMOUNT,PRINCIPAL,INTEREST,PERIOD,
+        STATE,BORROW_TYPE,REPAYMENT_TYPE,CREATE_TIME
+        FROM T_REPAYMENT
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="borrowId != null and borrowId != ''">
+                and borrow_id = #{borrowId}
+            </if>
+            <if test="borrowUserId != null and borrowUserId != ''">
+                and borrow_user_id = #{borrowUserId}
+            </if>
+            <if test="borrowTitle != null and borrowTitle != ''">
+                and borrow_title = #{borrowTitle}
+            </if>
+            <if test="deadline != null and deadline != ''">
+                and deadline = #{deadline}
+            </if>
+            <if test="repaymentTime != null and repaymentTime != ''">
+                and repayment_time = #{repaymentTime}
+            </if>
+            <if test="totalAmount != null and totalAmount != ''">
+                and total_amount = #{totalAmount}
+            </if>
+            <if test="principal != null and principal != ''">
+                and principal = #{principal}
+            </if>
+            <if test="interest != null and interest != ''">
+                and interest = #{interest}
+            </if>
+            <if test="period != null and period != ''">
+                and period = #{period}
+            </if>
+            <if test="state != null and state != ''">
+                and state = #{state}
+            </if>
+            <if test="borrowType != null and borrowType != ''">
+                and borrow_type = #{borrowType}
+            </if>
+            <if test="repaymentType != null and repaymentType != ''">
+                and repayment_type = #{repaymentType}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                and create_time = #{createTime}
+            </if>
+        </trim>
+        order by period asc
+        <if test="beginPos != null and pageSize != null">
+            LIMIT #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getRepaymentCount" resultType="Integer" parameterType="java.util.Map">
+        SELECT COUNT(1) FROM T_REPAYMENT
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="borrowId != null and borrowId != ''">
+                and borrow_id = #{borrowId}
+            </if>
+            <if test="borrowUserId != null and borrowUserId != ''">
+                and borrow_user_id = #{borrowUserId}
+            </if>
+            <if test="borrowTitle != null and borrowTitle != ''">
+                and borrow_title = #{borrowTitle}
+            </if>
+            <if test="deadline != null and deadline != ''">
+                and deadline = #{deadline}
+            </if>
+            <if test="repaymentTime != null and repaymentTime != ''">
+                and repayment_time = #{repaymentTime}
+            </if>
+            <if test="totalAmount != null and totalAmount != ''">
+                and total_amount = #{totalAmount}
+            </if>
+            <if test="principal != null and principal != ''">
+                and principal = #{principal}
+            </if>
+            <if test="interest != null and interest != ''">
+                and interest = #{interest}
+            </if>
+            <if test="period != null and period != ''">
+                and period = #{period}
+            </if>
+            <if test="state != null and state != ''">
+                and state = #{state}
+            </if>
+            <if test="borrowType != null and borrowType != ''">
+                and borrow_type = #{borrowType}
+            </if>
+            <if test="repaymentType != null and repaymentType != ''">
+                and repayment_type = #{repaymentType}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                and create_time = #{createTime}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getRepaymentByBorrowId" resultType="com.yixue.loxc.pojo.TRepayment">
+        SELECT ID,
+               BORROW_ID,
+               BORROW_USER_ID,
+               BORROW_TITLE,
+               DEADLINE,
+               REPAYMENT_TIME,
+               TOTAL_AMOUNT,
+               PRINCIPAL,
+               INTEREST,
+               PERIOD,
+               STATE,
+               BORROW_TYPE,
+               REPAYMENT_TYPE,
+               CREATE_TIME
+        FROM T_REPAYMENT
+        WHERE BORROW_ID = #{borrowId}
+    </select>
+
+    <select id="getRepaymentById" resultType="com.yixue.loxc.pojo.TRepayment">
+        SELECT ID,
+               BORROW_ID,
+               BORROW_USER_ID,
+               BORROW_TITLE,
+               DEADLINE,
+               REPAYMENT_TIME,
+               TOTAL_AMOUNT,
+               PRINCIPAL,
+               INTEREST,
+               PERIOD,
+               STATE,
+               BORROW_TYPE,
+               REPAYMENT_TYPE,
+               CREATE_TIME
+        FROM T_REPAYMENT
+        WHERE ID = #{id}
+    </select>
+
+    <update id="repay" parameterType="com.yixue.loxc.pojo.TRepayment">
+        UPDATE t_repayment SET repayment_time = #{repaymentTime},state = #{state} WHERE id = #{id}
+    </update>
+</mapper>
