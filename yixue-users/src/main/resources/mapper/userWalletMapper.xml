@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yixue.loxc.loan.dao.UserWalletMapper">
+    <update id="update" parameterType="com.yixue.loxc.pojo.entity.TUserWalletEntity">
+        UPDATE t_user_wallet
+        <trim prefix="set" suffixOverrides=",">
+            <if test="availableAmount != null AND availableAmount != ''">
+                available_amount = #{availableAmount}
+            </if>
+            <if test="freezeAmount != null AND freezeAmount != ''">
+                freeze_amount = #{freezeAmount}
+            </if>
+            <if test="interestPending != null AND interestPending != ''">
+                interest_pending = #{interestPending}
+            </if>
+            <if test="principalPending != null AND principalPending != ''">
+                principal_pending = #{principalPending}
+            </if>
+            <if test="repaidAmount != null AND repaidAmount != ''">
+                repaid_amount = #{repaidAmount}
+            </if>
+            <if test="creditScore != null AND creditScore != ''">
+                credit_score = #{creditScore}
+            </if>
+            <if test="creditLine != null AND creditLine != ''">
+                credit_line = #{creditLine}
+            </if>
+            <if test="residualCreditLine != null AND residualCreditLine !=''">
+                residual_credit_line = residual_credit_line + #{residualCreditLine}
+            </if>
+            <if test="createTime != null AND createTime !=''">
+                create_time = #{createTime}
+            </if>
+        </trim>
+        WHERE account_id = #{accountId}
+    </update>
+</mapper>
