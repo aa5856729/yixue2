@@ -11,50 +11,14 @@
         STATE,BORROW_TYPE,REPAYMENT_TYPE,CREATE_TIME
         FROM T_REPAYMENT
         <trim prefix="where" prefixOverrides="and | or">
-            <if test="id != null and id != ''">
-                and id = #{id}
-            </if>
-            <if test="borrowId != null and borrowId != ''">
-                and borrow_id = #{borrowId}
-            </if>
-            <if test="borrowUserId != null and borrowUserId != ''">
-                and borrow_user_id = #{borrowUserId}
-            </if>
-            <if test="borrowTitle != null and borrowTitle != ''">
-                and borrow_title = #{borrowTitle}
-            </if>
-            <if test="deadline != null and deadline != ''">
-                and deadline = #{deadline}
-            </if>
-            <if test="repaymentTime != null and repaymentTime != ''">
-                and repayment_time = #{repaymentTime}
-            </if>
-            <if test="totalAmount != null and totalAmount != ''">
-                and total_amount = #{totalAmount}
-            </if>
-            <if test="principal != null and principal != ''">
-                and principal = #{principal}
-            </if>
-            <if test="interest != null and interest != ''">
-                and interest = #{interest}
-            </if>
-            <if test="period != null and period != ''">
-                and period = #{period}
+            <if test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
+                and deadline > #{beginDate} and deadline &lt; #{endDate}
             </if>
             <if test="state != null and state != ''">
                 and state = #{state}
             </if>
-            <if test="borrowType != null and borrowType != ''">
-                and borrow_type = #{borrowType}
-            </if>
-            <if test="repaymentType != null and repaymentType != ''">
-                and repayment_type = #{repaymentType}
-            </if>
-            <if test="createTime != null and createTime != ''">
-                and create_time = #{createTime}
-            </if>
         </trim>
-        order by period asc
+        order by repayment_time
         <if test="beginPos != null and pageSize != null">
             LIMIT #{beginPos},#{pageSize}
         </if>
@@ -147,6 +111,85 @@
     </select>
 
     <update id="repay" parameterType="com.yixue.loxc.pojo.TRepayment">
-        UPDATE t_repayment SET repayment_time = #{repaymentTime},state = #{state} WHERE id = #{id}
+        UPDATE t_repayment
+        SET repayment_time = #{repaymentTime},
+            state          = #{state}
+        WHERE id = #{id}
     </update>
+
+    <insert id="add" parameterType="com.yixue.loxc.pojo.TRepayment">
+        INSERT INTO t_repayment(id, borrow_id, borrow_user_id, borrow_title, deadline, repayment_time, total_amount,
+                                principal, interest, period, state, borrow_type, repayment_type, create_time)
+        VALUES (#{id}, #{borrowId}, #{borrowUserId}, #{borrowTitle}, #{deadline}, #{repaymentTime}, #{totalAmount},
+                #{principal}, #{interest}, #{period}, #{state}, #{borrowType}, #{repaymentType}, #{createTime})
+    </insert>
+
+    <select id="getRepaymentDetailList" resultType="com.yixue.loxc.pojo.TRepaymentDetail" parameterType="java.util.Map">
+        SELECT id,
+        bid_id,
+        borrow_id,
+        repayment_id,
+        borrow_user_id,
+        bid_user_id,
+        borrow_title,
+        total_amount,
+        principal,
+        interest,
+        period,
+        deadline,
+        repayment_time,
+        repayment_type,
+        create_time
+        FROM t_repayment_detail
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
+                and repayment_time > #{beginDate} and repayment_time &lt; #{endDate}
+            </if>
+            <if test="repaymentType != null and repaymentType !=''">
+                and repayment_type = #{repaymentType}
+            </if>
+        </trim>
+        ORDER BY repayment_time LIMIT #{beginPos},#{pageSize}
+    </select>
+
+    <select id="getRepaymentDetailById" resultType="com.yixue.loxc.pojo.TRepaymentDetail">
+        SELECT id,
+               bid_id,
+               borrow_id,
+               repayment_id,
+               borrow_user_id,
+               bid_user_id,
+               borrow_title,
+               total_amount,
+               principal,
+               interest,
+               period,
+               deadline,
+               repayment_time,
+               repayment_type,
+               create_time
+        FROM t_repayment_detail
+        WHERE id = #{id}
+    </select>
+
+    <select id="getRepaymentDetailCount" resultType="Integer" parameterType="java.util.Map">
+        SELECT COUNT(1) FROM t_repayment_detail
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
+                and repayment_time > #{beginDate} and repayment_time &lt; #{endDate}
+            </if>
+            <if test="repaymentType != null and repaymentType !=''">
+                and repayment_type = #{repaymentType}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addRepaymentDetail" parameterType="com.yixue.loxc.pojo.TRepaymentDetail">
+        INSERT INTO t_repayment_detail(id, bid_id, borrow_id, repayment_id, borrow_user_id, bid_user_id, borrow_title,
+                                       total_amount, principal, interest, period, deadline, repayment_time,
+                                       repayment_type, create_time)
+        VALUES (#{id}, #{bidId}, #{borrowId}, #{repaymentId}, #{borrowUserId}, #{bidUserId}, #{borrowTitle},
+                #{totalAmount}, #{principal}, #{interest}, #{period}, #{deadline}, #{repaymentTime}, #{repaymentType},
+                #{createTime})
+    </insert>
 </mapper>
