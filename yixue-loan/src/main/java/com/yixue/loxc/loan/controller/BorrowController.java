@@ -5,6 +5,7 @@ import com.yixue.loxc.commons.Page;
 import com.yixue.loxc.loan.service.BorrowService;
 import com.yixue.loxc.pojo.Result;
 import com.yixue.loxc.pojo.TBorrowEntity;
+import com.yixue.loxc.pojo.entity.TUserWalletEntity;
 import com.yixue.loxc.vo.QueryObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -41,28 +42,28 @@ public class BorrowController {
     @RequestMapping(value = "/query", produces = "application/json")
     @ResponseBody
     public Result<TBorrowEntity> getTBorrow(QueryObject queryObject) {
-        Map<String,Object> param = new HashMap<String,Object>();
+        Map<String, Object> param = new HashMap<String, Object>();
 
-        if(!"".equals(queryObject.getUserId())){
-            param.put("borrowUserId",queryObject.getUserId());
+        if (!"".equals(queryObject.getUserId())) {
+            param.put("borrowUserId", queryObject.getUserId());
         }
 
-        if(!"20,30,40,50".equals(queryObject.getBorrowStates()) && !"1,10,11,20,30,31,40,50".equals(queryObject.getBorrowStates())){
-            param.put("borrowState",queryObject.getBorrowStates());
+        if (!"1,10,11,20,30,31,40,50".equals(queryObject.getBorrowStates())) {
+            param.put("borrowStates", queryObject.getBorrowStates());
         }
 
-        if (queryObject != null){
-            if (queryObject.getBeginDate()!= null && queryObject.getEndDate() != null){
-                param.put("beginDate",queryObject.getBeginDate().toString());
-                param.put("endDate",queryObject.getEndDate().toString());
+        if (queryObject != null) {
+            if (queryObject.getBeginDate() != null && queryObject.getEndDate() != null) {
+                param.put("beginDate", queryObject.getBeginDate().toString());
+                param.put("endDate", queryObject.getEndDate().toString());
             }
         }
 
-        Page page = borrowService.getTBorrowList(param,queryObject.getCurrentPage(), Constants.DEFAULT_PAGE_SIZE);
-        if(null != page.getListData()){
-            return new Result(200,"成功",page);
+        Page page = borrowService.getTBorrowList(param, queryObject.getCurrentPage(), Constants.DEFAULT_PAGE_SIZE);
+        if (null != page.getListData()) {
+            return new Result(200, "成功", page);
         }
-        return new Result(222,"失败，没有查询到数据");
+        return new Result(222, "失败，没有查询到数据");
     }
 
     @GetMapping("/get/{borrowId}")
@@ -78,8 +79,8 @@ public class BorrowController {
 
     @PostMapping("/audit")
     @ResponseBody
-    public Result<Object> Audit(String borrowId,String borrowState) {
-        if (borrowService.updateTBorrow(borrowId,borrowState)) {
+    public Result<Object> Audit(String borrowId, String borrowState) {
+        if (borrowService.updateTBorrow(borrowId, borrowState)) {
             return new Result(200, "操作成功");
         } else {
             return new Result(222, "异常，操作失败！");
@@ -88,8 +89,8 @@ public class BorrowController {
 
     @RequestMapping("/loan/audit")
     @ResponseBody
-    public Result loanAudit(String borrowId,String borrowState){
-        if (borrowService.loanAudit(borrowId,borrowState)) {
+    public Result loanAudit(String borrowId, String borrowState) {
+        if (borrowService.loanAudit(borrowId, borrowState)) {
             return new Result(200, "操作成功");
         } else {
             return new Result(222, "异常，操作失败！");
