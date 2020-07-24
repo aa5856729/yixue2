@@ -76,7 +76,7 @@ public class BorrowServiceImpl implements BorrowService {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
 
-        //borrowState = borrowState.equals("12") ? "20" : borrowState;
+        borrowState = borrowState.equals("12") ? "20" : borrowState;
         tBorrowEntity.setBorrowState(Integer.parseInt(borrowState));
         tBorrowEntity.setPublishTime(calendar.getTime());
 

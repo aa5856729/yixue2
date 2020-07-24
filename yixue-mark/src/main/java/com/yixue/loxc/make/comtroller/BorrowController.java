@@ -84,13 +84,13 @@ public class BorrowController {
 //        }
 //    }
 //
-//    @PostMapping("/audit")
-//    public Result<Object> Audit(@RequestParam("borrowId")String borrowId,@RequestParam("borrowState")String borrowState){
-//
-//        if(borrowService.updateTBorrow(borrowId,borrowState)){
-//            return new Result(200,"操作成功");
-//        }else{
-//            return new Result(222,"异常，操作失败！");
-//        }
-//    }
+    @PostMapping("/audit")
+    public Result<Object> Audit(@RequestParam("borrowId")String borrowId,@RequestParam("borrowState")String borrowState){
+
+        if(borrowService.updateTBorrow(borrowId,borrowState)){
+            return new Result(200,"操作成功");
+        }else{
+            return new Result(222,"异常，操作失败！");
+        }
+    }
 }
