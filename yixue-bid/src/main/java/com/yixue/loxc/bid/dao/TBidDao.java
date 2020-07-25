@@ -22,4 +22,11 @@ public interface TBidDao {
      * @return
      */
     public Integer getCount(Map<String,Object> param);
+
+    /**
+     * 添加投标
+     * @param tBidEntity
+     * @return
+     */
+    public Integer insertBid(TBidEntity tBidEntity);
 }

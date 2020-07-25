@@ -102,4 +102,9 @@
             </if>
         </trim>
     </select>
+
+    <insert id="insertBid" parameterType="com.yixue.loxc.pojo.TBidEntity">
+        INSERT INTO t_bid VALUE(
+	        #{id},#{borrowId},#{borrowTitle},#{bidAmount},#{bidInterest},#{yearRate},#{borrowState},#{bidUserId},#{bidUsername},#{bidTime},#{createTime})
+    </insert>
 </mapper>

@@ -2,13 +2,10 @@ package com.yixue.loxc.bid.controller;
 
 import com.yixue.loxc.bid.service.TBidService;
 import com.yixue.loxc.commons.Constants;
-import com.yixue.loxc.commons.EmptyUtils;
 import com.yixue.loxc.commons.Page;
 import com.yixue.loxc.pojo.Result;
+import com.yixue.loxc.pojo.TBidEntity;
 import com.yixue.loxc.vo.QueryObject;
-import lombok.extern.log4j.Log4j;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -35,6 +32,27 @@ public class TBidController {
         return getPage(queryObject);
     }
 
+    @PostMapping("/add")
+    public Result<Object> addTBid(TBidEntity tBidEntity){
+
+        if(tBidService.insertBid(tBidEntity)){
+            return new Result<>(200,"投标成功！");
+        }
+        return new Result<>(400,"错误，投标失败");
+    }
+
+    @PostMapping("/audit")
+    public Result<Object> audit(QueryObject queryObject){
+
+        System.out.println(queryObject);
+
+
+
+
+
+        return null;
+    }
+
 
     /**
      * 获取查询数据
@@ -43,7 +61,6 @@ public class TBidController {
      */
     private Result<Page> getPage(QueryObject queryObject){
         Map<String,Object> param = new HashMap<>();
-        System.out.println(queryObject);
 
         if (queryObject != null){
             if (queryObject.getBeginDate()!= null && queryObject.getEndDate() != null ){
@@ -66,7 +83,7 @@ public class TBidController {
         }
         try{
             Page page = tBidService.getTBidByListPage(param,queryObject.getCurrentPage(),Constants.DEFAULT_PAGE_SIZE);
-            System.out.println(page.getListData());
+
             if(null == page){
                 return new Result<>(223,"没有查询到数据");
             }
