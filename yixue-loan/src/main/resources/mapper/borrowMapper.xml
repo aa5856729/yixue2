@@ -29,7 +29,7 @@
                 AND APPLY_TIME &lt; #{endDate}
             </if>
             <if test="borrowStates != null and borrowStates !=''">
-                AND BORROW_STATE IN (#{borrowStates})
+                AND BORROW_STATE IN (${borrowStates})
             </if>
         </trim>
         ORDER BY CREATE_TIME DESC
@@ -48,7 +48,7 @@
                 AND APPLY_TIME &lt; #{endDate}
             </if>
             <if test="borrowStates != null and borrowStates !=''">
-                AND BORROW_STATE IN (#{borrowStates})
+                AND BORROW_STATE IN (${borrowStates})
             </if>
         </trim>
     </select>

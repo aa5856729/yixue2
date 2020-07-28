@@ -15,8 +15,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/finance/borrow")
-@CrossOrigin(origins = "*",maxAge = 3600)               //实现表单跨域请求
+@RequestMapping("/borrow")
 public class BorrowController {
 
     @Resource
@@ -24,23 +23,22 @@ public class BorrowController {
 
     
     @PostMapping("/query")
-    public Result<TBorrow> BorrowQuery(QueryObject queryObject){
+    public Result<TBorrow> BorrowQuery(@RequestBody QueryObject queryObject){
         Map<String,Object> param = new HashMap<String,Object>();
 
         if(!"".equals(queryObject.getUserId())){
             param.put("borrowUserId",queryObject.getUserId());
         }
-
-        if(!"20,30,40,50".equals(queryObject.getBorrowStates()) && !"1,10,11,20,30,31,40,50".equals(queryObject.getBorrowStates())){
-            param.put("borrowState",queryObject.getBorrowStates());
+        if (!"1,10,11,20,30,31,40,50".equals(queryObject.getBorrowStates())) {
+            param.put("borrowStates", queryObject.getBorrowStates());
         }
+
         if (queryObject != null){
             if (queryObject.getBeginDate()!= null && queryObject.getEndDate() != null){
                 param.put("beginDate",queryObject.getBeginDate().toString());
                 param.put("endDate",queryObject.getEndDate().toString());
             }
         }
-
 
         Page page = borrowService.getTBorrowByList(param,queryObject.getCurrentPage(),Constants.DEFAULT_PAGE_SIZE);
 
@@ -84,13 +82,13 @@ public class BorrowController {
 //        }
 //    }
 //
-    @PostMapping("/audit")
-    public Result<Object> Audit(@RequestParam("borrowId")String borrowId,@RequestParam("borrowState")String borrowState){
-
-        if(borrowService.updateTBorrow(borrowId,borrowState)){
-            return new Result(200,"操作成功");
-        }else{
-            return new Result(222,"异常，操作失败！");
-        }
-    }
+//    @PostMapping("/audit")
+//    public Result<Object> Audit(@RequestParam("borrowId")String borrowId,@RequestParam("borrowState")String borrowState){
+//
+//        if(borrowService.updateTBorrow(borrowId,borrowState)){
+//            return new Result(200,"操作成功");
+//        }else{
+//            return new Result(222,"异常，操作失败！");
+//        }
+//    }
 }

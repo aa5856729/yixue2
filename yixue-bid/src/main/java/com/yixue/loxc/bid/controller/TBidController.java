@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/finance/bid")
+@RequestMapping("/bid")
 @CrossOrigin
 public class TBidController {
 
@@ -21,11 +21,12 @@ public class TBidController {
     private TBidService tBidService;
 
     @PostMapping("/query")
-    public Result<Page> query(QueryObject queryObject){
+    public Result<Page> query(@RequestBody QueryObject queryObject){
+        System.out.println("/////////////");
         return getPage(queryObject);
     }
 
-    @PostMapping("/getByBorrowId/{borrowId}")
+    @GetMapping("/getByBorrowId/{borrowId}")
     public Result<Page> GetByBorrowId(@PathVariable String borrowId){
         QueryObject queryObject = new QueryObject();
         queryObject.setBorrowId(borrowId);
@@ -33,26 +34,13 @@ public class TBidController {
     }
 
     @PostMapping("/add")
-    public Result<Object> addTBid(TBidEntity tBidEntity){
+    public Result<Object> addTBid(@RequestBody TBidEntity tBidEntity){
 
         if(tBidService.insertBid(tBidEntity)){
             return new Result<>(200,"投标成功！");
         }
         return new Result<>(400,"错误，投标失败");
     }
-
-    @PostMapping("/audit")
-    public Result<Object> audit(QueryObject queryObject){
-
-        System.out.println(queryObject);
-
-
-
-
-
-        return null;
-    }
-
 
     /**
      * 获取查询数据

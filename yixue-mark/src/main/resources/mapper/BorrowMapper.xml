@@ -47,8 +47,8 @@
             <if test="borrowType != null and borrowType != ''">
                 and borrow_type = #{borrowType}
             </if>
-            <if test="borrowState != null and borrowState != ''">
-                and borrow_state = #{borrowState}
+            <if test="borrowStates != null and borrowStates != ''">
+                and borrow_state IN (${borrowStates})
             </if>
             <if test="borrowAmount != null and borrowAmount != ''">
                 and borrow_amount = #{borrowAmount}
@@ -121,7 +121,7 @@
                   and borrow_type = #{borrowType}
               </if>
                <if test="borrowState != null and borrowState != ''">
-                  and borrow_state = #{borrowState}
+                   and borrow_state IN (${borrowStates})
               </if>
                <if test="borrowAmount != null and borrowAmount != ''">
                   and borrow_amount = #{borrowAmount}
