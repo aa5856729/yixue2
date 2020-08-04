@@ -4,12 +4,17 @@ import com.yixue.loxc.commons.Constants;
 import com.yixue.loxc.commons.EmptyUtils;
 import com.yixue.loxc.commons.Page;
 import com.yixue.loxc.loan.dao.BorrowMapper;
+import com.yixue.loxc.pojo.TAccountFlow;
+import com.yixue.loxc.pojo.TBid;
 import com.yixue.loxc.pojo.TBorrowEntity;
+import com.yixue.loxc.pojo.TRepayment;
 import com.yixue.loxc.pojo.entity.TUserWalletEntity;
+import com.yixue.loxc.repayment.dao.RepaymentMapper;
 import com.yixue.loxc.user.service.UserWalletService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 import java.util.*;
 
 @Service
@@ -20,6 +25,9 @@ public class BorrowServiceImpl implements BorrowService {
 
     @Resource
     UserWalletService userWalletService;
+
+    @Resource
+    private RepaymentMapper repaymentMapper;
 
     @Override
     public Page getTBorrowList(Map<String, Object> param, Integer pageNo, Integer pageSize) {
@@ -107,8 +115,123 @@ public class BorrowServiceImpl implements BorrowService {
 
     @Override
     public boolean loanAudit(String borrowId, String borrowState) {
-        TBorrowEntity tBorrowEntity = borrowMapper.getTBorrowById(borrowId);
+        TBorrowEntity tBorrowEntity = borrowMapper.getTBorrowById(borrowId);                //获取借款信息
+        TUserWalletEntity tUserWalletEntity;                                                //获取用户钱包信息
+        TAccountFlow tAccountFlow;                                                          //生成账户流水
+        List<TBid> bidList;
+
+        //审核拒绝
+        if (borrowState.equals("31")) {
+            //相关投资人收益更新
+            bidList = repaymentMapper.getBidListByBorrowId(tBorrowEntity.getId());
+            for (int i = 0; i < bidList.size(); i++) {
+                TBid bid = bidList.get(i);
+                tUserWalletEntity = userWalletService.getwallet(bid.getBidUserId());
+                tUserWalletEntity.setAvailableAmount(tUserWalletEntity.getAvailableAmount() + bid.getBidAmount());
+                tUserWalletEntity.setFreezeAmount(tUserWalletEntity.getFreezeAmount() - bid.getBidAmount());
+                userWalletService.update(tUserWalletEntity);
+
+                //新增一条账户流水
+                tAccountFlow = new TAccountFlow();
+                tAccountFlow.setAccountId(tUserWalletEntity.getAccountId());
+                tAccountFlow.setAmount(bid.getBidAmount());
+                tAccountFlow.setFlowType(50);
+                tAccountFlow.setAvailableAmount(tUserWalletEntity.getAvailableAmount());
+                tAccountFlow.setFreezeAmount(tUserWalletEntity.getFreezeAmount());
+                tAccountFlow.setRemark("退款" + tBorrowEntity.getTitle() + "成功，退款金额：" + tAccountFlow.getAmount() + "元");
+                tAccountFlow.setCreateTime(new Timestamp(new Date().getTime()));
+            }
+
+            tUserWalletEntity = userWalletService.getwallet(tBorrowEntity.getBorrowUserId());
+            tUserWalletEntity.setResidualCreditLine(tUserWalletEntity.getResidualCreditLine() + tBorrowEntity.getBorrowAmount());
+        } else if (borrowState.equals("40")) {
+            //借款成功修改账户金额
+            tUserWalletEntity = userWalletService.getwallet(tBorrowEntity.getBorrowUserId());
+            tUserWalletEntity.setAvailableAmount(tUserWalletEntity.getAvailableAmount() + tBorrowEntity.getBorrowAmount());
+            tUserWalletEntity.setRepaidAmount(tBorrowEntity.getBorrowAmount() + tBorrowEntity.getTotalInterest());
+
+            //新增一条账户流水
+            tAccountFlow = new TAccountFlow();
+            tAccountFlow.setAccountId(tUserWalletEntity.getAccountId());
+            tAccountFlow.setAmount(tBorrowEntity.getBorrowAmount());
+            tAccountFlow.setFlowType(10);
+            tAccountFlow.setAvailableAmount(tUserWalletEntity.getAvailableAmount());
+            tAccountFlow.setFreezeAmount(tUserWalletEntity.getFreezeAmount());
+            tAccountFlow.setRemark("借款" + tBorrowEntity.getTitle() + "成功，借款金额：" + tAccountFlow.getAmount() + "元");
+            tAccountFlow.setCreateTime(new Timestamp(new Date().getTime()));
+
+            //相关投资人收益更新
+            bidList = repaymentMapper.getBidListByBorrowId(tBorrowEntity.getId());
+            for (int i = 0; i < bidList.size(); i++) {
+                TBid bid = bidList.get(i);
+                tUserWalletEntity = userWalletService.getwallet(bid.getBidUserId());
+
+                //新增一条账户流水
+                tAccountFlow = new TAccountFlow();
+                tAccountFlow.setAccountId(tUserWalletEntity.getAccountId());
+                tAccountFlow.setAmount(bid.getBidAmount());
+                tAccountFlow.setFlowType(20);
+                tAccountFlow.setAvailableAmount(tUserWalletEntity.getAvailableAmount());
+                tAccountFlow.setFreezeAmount(tUserWalletEntity.getFreezeAmount());
+                tAccountFlow.setRemark("投标" + tBorrowEntity.getTitle() + "成功，投标冻结金额：" + tAccountFlow.getAmount() + "元");
+                tAccountFlow.setCreateTime(new Timestamp(new Date().getTime()));
+            }
+
+            TRepayment tRepayment = new TRepayment();
+            tRepayment.setBorrowId(tBorrowEntity.getId());
+            tRepayment.setBorrowUserId(tBorrowEntity.getBorrowUserId());
+            tRepayment.setBorrowTitle(tBorrowEntity.getTitle());
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(tBorrowEntity.getPublishTime());
+
+            if (tBorrowEntity.getBorrowType() == 1) {
+                //等额本息
+                for (int i = 0; i < tBorrowEntity.getRepaymentMonth(); i++) {
+                    tRepayment.setId(UUID.randomUUID().toString().substring(0, 31));
+                    calendar.add(calendar.MONTH, i + 1);
+                    tRepayment.setDeadline((Timestamp) calendar.getTime());
+                    tRepayment.setTotalAmount((tBorrowEntity.getBorrowAmount() + tBorrowEntity.getTotalInterest()) / tBorrowEntity.getRepaymentMonth());
+                    tRepayment.setPrincipal(tBorrowEntity.getBorrowAmount() / tBorrowEntity.getRepaymentMonth());
+                    tRepayment.setInterest(tBorrowEntity.getTotalInterest() / tBorrowEntity.getRepaymentMonth());
+                    tRepayment.setPeriod(i + 1);
+                    tRepayment.setState(2);
+                    tRepayment.setBorrowType(1);
+                    tRepayment.setRepaymentType(1);
+                    tRepayment.setCreateTime((Timestamp) new Date());
+                    repaymentMapper.add(tRepayment);
+                }
+            } else {
+                //先息后本
+                for (int i = 0; i < tBorrowEntity.getRepaymentMonth() - 1; i++) {
+                    tRepayment.setId(UUID.randomUUID().toString().substring(0, 31));
+                    calendar.add(calendar.MONTH, i + 1);
+                    tRepayment.setDeadline((Timestamp) calendar.getTime());
+                    tRepayment.setTotalAmount(tBorrowEntity.getTotalInterest() / tBorrowEntity.getRepaymentMonth());
+                    tRepayment.setPrincipal(0);
+                    tRepayment.setInterest(tBorrowEntity.getTotalInterest() / tBorrowEntity.getRepaymentMonth());
+                    tRepayment.setPeriod(i + 1);
+                    tRepayment.setState(2);
+                    tRepayment.setBorrowType(1);
+                    tRepayment.setRepaymentType(2);
+                    tRepayment.setCreateTime((Timestamp) new Date());
+                    repaymentMapper.add(tRepayment);
+                }
+
+                //最后一个月的还款记录
+                tRepayment.setId(UUID.randomUUID().toString().substring(0, 31));
+                calendar.add(calendar.MONTH, tBorrowEntity.getRepaymentMonth());
+                tRepayment.setDeadline((Timestamp) calendar.getTime());
+                tRepayment.setTotalAmount(tBorrowEntity.getBorrowAmount() + tBorrowEntity.getTotalInterest() / tBorrowEntity.getRepaymentMonth());
+                tRepayment.setPrincipal(tBorrowEntity.getBorrowAmount());
+                tRepayment.setInterest(tBorrowEntity.getTotalInterest() / tBorrowEntity.getRepaymentMonth());
+                tRepayment.setPeriod(tBorrowEntity.getRepaymentMonth());
+                repaymentMapper.add(tRepayment);
+            }
+        }
+
         tBorrowEntity.setBorrowState(Integer.parseInt(borrowState));
+
         Integer num = borrowMapper.updateTBorrow(tBorrowEntity);
         if (num > 0) {
             return true;

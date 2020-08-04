@@ -43,7 +43,7 @@ public class BorrowController {
     @ResponseBody
     public Result<TBorrowEntity> getTBorrow(QueryObject queryObject) {
         Map<String, Object> param = new HashMap<String, Object>();
-
+        System.out.println(queryObject);
         if (!"".equals(queryObject.getUserId())) {
             param.put("borrowUserId", queryObject.getUserId());
         }
@@ -60,6 +60,9 @@ public class BorrowController {
         }
 
         Page page = borrowService.getTBorrowList(param, queryObject.getCurrentPage(), Constants.DEFAULT_PAGE_SIZE);
+        for (int i = 0; i < page.getListData().size(); i++){
+            System.out.println(page.getListData().get(i));
+        }
         if (null != page.getListData()) {
             return new Result(200, "成功", page);
         }
