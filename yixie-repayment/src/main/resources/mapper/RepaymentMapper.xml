@@ -192,4 +192,33 @@
                 #{totalAmount}, #{principal}, #{interest}, #{period}, #{deadline}, #{repaymentTime}, #{repaymentType},
                 #{createTime})
     </insert>
+
+    <select id="getOverdueCount" resultType="Integer">
+        SELECT COUNT(1)
+        FROM t_repayment
+        WHERE borrow_id = #{id}
+          AND state = 4
+    </select>
+
+    <select id="getBidListByBorrowId" resultType="com.yixue.loxc.pojo.TBid">
+        SELECT id,
+               borrow_id,
+               borrow_title,
+               bid_amount,
+               bid_interest,
+               year_rate,
+               borrow_state,
+               bid_user_id,
+               bid_username,
+               bid_time,
+               create_time
+        FROM t_bid
+        WHERE borrow_id = #{id}
+    </select>
+
+    <update id="updateRepayment" parameterType="com.yixue.loxc.pojo.TRepayment">
+        UPDATE T_REPAYMENT
+        SET STATE = #{state}
+        WHERE ID = #{id}
+    </update>
 </mapper>
