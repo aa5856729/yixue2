@@ -1,5 +1,6 @@
 package com.yixue.loxc.repayment.dao;
 
+import com.yixue.loxc.pojo.TBid;
 import com.yixue.loxc.pojo.TRepayment;
 import com.yixue.loxc.pojo.TRepaymentDetail;
 import org.apache.ibatis.annotations.Mapper;
@@ -79,4 +80,25 @@ public interface RepaymentMapper {
      * @return
      */
     public Integer addRepaymentDetail(TRepaymentDetail tRepaymentDetail);
+
+    /**
+     * 获取逾期次数
+     * @param id
+     * @return
+     */
+    public Integer getOverdueCount(@Param("id") String id);
+
+    /**
+     * 根据借款id获取标
+     * @param borrowId
+     * @return
+     */
+    public List<TBid> getBidListByBorrowId(@Param("borrowId") String borrowId);
+
+    /**
+     * 修改借款信息
+     * @param tRepayment
+     * @return
+     */
+    public Integer updateRepayment(TRepayment tRepayment);
 }
