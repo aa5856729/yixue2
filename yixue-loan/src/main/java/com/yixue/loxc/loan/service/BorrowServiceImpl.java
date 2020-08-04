@@ -12,7 +12,6 @@ import com.yixue.loxc.pojo.entity.TUserWalletEntity;
 import com.yixue.loxc.repayment.dao.RepaymentMapper;
 import com.yixue.loxc.user.service.UserWalletService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.sql.Timestamp;
 import java.util.*;
@@ -86,18 +85,18 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public boolean updateTBorrow(String borrowId, String borrowState) {
-        TBorrowEntity tBorrowEntity = borrowMapper.getTBorrowById(borrowId);
+    public boolean updateTBorrow(TBorrowEntity tBorrow) {
+        TBorrowEntity tBorrowEntity = borrowMapper.getTBorrowById(tBorrow.getId());
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
 
         //审核通过进入招标状态
-        if (!borrowState.equals("11")) {
+        if (tBorrow.getBorrowState() != 11) {
             tBorrowEntity.setBorrowState(20);
         } else {
             TUserWalletEntity tUserWalletEntity = userWalletService.getwallet(tBorrowEntity.getBorrowUserId());
             tUserWalletEntity.setResidualCreditLine(tUserWalletEntity.getResidualCreditLine() + tBorrowEntity.getBorrowAmount());
-            tBorrowEntity.setBorrowState(Integer.parseInt(borrowState));
+            tBorrowEntity.setBorrowState(tBorrow.getBorrowState());
             userWalletService.update(tUserWalletEntity);
         }
         tBorrowEntity.setPublishTime(calendar.getTime());
@@ -114,14 +113,14 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public boolean loanAudit(String borrowId, String borrowState) {
-        TBorrowEntity tBorrowEntity = borrowMapper.getTBorrowById(borrowId);                //获取借款信息
+    public boolean loanAudit(TBorrowEntity tBorrow) {
+        TBorrowEntity tBorrowEntity = borrowMapper.getTBorrowById(tBorrow.getId());                //获取借款信息
         TUserWalletEntity tUserWalletEntity;                                                //获取用户钱包信息
         TAccountFlow tAccountFlow;                                                          //生成账户流水
         List<TBid> bidList;
 
         //审核拒绝
-        if (borrowState.equals("31")) {
+        if (tBorrow.getBorrowState().equals("31")) {
             //相关投资人收益更新
             bidList = repaymentMapper.getBidListByBorrowId(tBorrowEntity.getId());
             for (int i = 0; i < bidList.size(); i++) {
@@ -144,7 +143,7 @@ public class BorrowServiceImpl implements BorrowService {
 
             tUserWalletEntity = userWalletService.getwallet(tBorrowEntity.getBorrowUserId());
             tUserWalletEntity.setResidualCreditLine(tUserWalletEntity.getResidualCreditLine() + tBorrowEntity.getBorrowAmount());
-        } else if (borrowState.equals("40")) {
+        } else if (tBorrow.getBorrowState().equals("40")) {
             //借款成功修改账户金额
             tUserWalletEntity = userWalletService.getwallet(tBorrowEntity.getBorrowUserId());
             tUserWalletEntity.setAvailableAmount(tUserWalletEntity.getAvailableAmount() + tBorrowEntity.getBorrowAmount());
@@ -230,7 +229,7 @@ public class BorrowServiceImpl implements BorrowService {
             }
         }
 
-        tBorrowEntity.setBorrowState(Integer.parseInt(borrowState));
+        tBorrowEntity.setBorrowState(tBorrow.getBorrowState());
 
         Integer num = borrowMapper.updateTBorrow(tBorrowEntity);
         if (num > 0) {

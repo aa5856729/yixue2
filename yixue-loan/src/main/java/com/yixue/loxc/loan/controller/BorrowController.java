@@ -9,6 +9,7 @@ import com.yixue.loxc.pojo.entity.TUserWalletEntity;
 import com.yixue.loxc.vo.QueryObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
@@ -60,7 +61,7 @@ public class BorrowController {
         }
 
         Page page = borrowService.getTBorrowList(param, queryObject.getCurrentPage(), Constants.DEFAULT_PAGE_SIZE);
-        for (int i = 0; i < page.getListData().size(); i++){
+        for (int i = 0; i < page.getListData().size(); i++) {
             System.out.println(page.getListData().get(i));
         }
         if (null != page.getListData()) {
@@ -82,8 +83,8 @@ public class BorrowController {
 
     @PostMapping("/audit")
     @ResponseBody
-    public Result<Object> Audit(String borrowId, String borrowState) {
-        if (borrowService.updateTBorrow(borrowId, borrowState)) {
+    public Result<Object> Audit(TBorrowEntity tBorrowEntity) {
+        if (borrowService.updateTBorrow(tBorrowEntity)) {
             return new Result(200, "操作成功");
         } else {
             return new Result(222, "异常，操作失败！");
@@ -92,8 +93,8 @@ public class BorrowController {
 
     @RequestMapping("/loan/audit")
     @ResponseBody
-    public Result loanAudit(String borrowId, String borrowState) {
-        if (borrowService.loanAudit(borrowId, borrowState)) {
+    public Result loanAudit(TBorrowEntity tBorrowEntity) {
+        if (borrowService.loanAudit(tBorrowEntity)) {
             return new Result(200, "操作成功");
         } else {
             return new Result(222, "异常，操作失败！");

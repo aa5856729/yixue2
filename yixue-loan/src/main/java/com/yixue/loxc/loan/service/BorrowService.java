@@ -32,16 +32,15 @@ public interface BorrowService {
 
     /**
      * 修改
-     * @param
+     * @param tBorrowEntity
      * @return
      */
-    public boolean updateTBorrow(String borrowId,String borrowState);
+    public boolean updateTBorrow(TBorrowEntity tBorrowEntity);
 
     /**
      * 满标审核
-     * @param borrowId
-     * @param borrowState
+     * @param tBorrowEntity
      * @return
      */
-    public boolean loanAudit(String borrowId,String borrowState);
+    public boolean loanAudit(TBorrowEntity tBorrowEntity);
 }
