@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixue.loxc.bid.dao.TBorrowDao">
+    <select id="getTBorrowById" resultType="com.yixue.loxc.pojo.TBorrowEntity" parameterType="String">
+        select * from t_borrow where id = #{id}
+    </select>
+    <update id="updateTBorrow" parameterType="com.yixue.loxc.pojo.TBorrowEntity">
+        update t_borrow
+        <trim prefix="set" suffixOverrides=",">
+            <if test="borrowUserId != null and borrowUserId != ''">
+                borrow_user_id = #{borrowUserId},
+            </if>
+            <if test="borrowUsername != null and borrowUsername != ''">
+                borrow_username = #{borrowUsername},
+            </if>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="repaymentType != null and repaymentType != ''">
+                repayment_type = #{repaymentType},
+            </if>
+            <if test="borrowType != null and borrowType != ''">
+                borrow_type = #{borrowType},
+            </if>
+            <if test="borrowState != null and borrowState != ''">
+                borrow_state = #{borrowState},
+            </if>
+            <if test="borrowAmount != null and borrowAmount != ''">
+                borrow_amount = #{borrowAmount},
+            </if>
+            <if test="yearRate != null and yearRate != ''">
+                year_rate = #{yearRate},
+            </if>
+            <if test="repaymentMonth != null and repaymentMonth != ''">
+                repayment_month = #{repaymentMonth},
+            </if>
+            <if test="bidNum != null and bidNum != ''">
+                bid_num = #{bidNum},
+            </if>
+            <if test="totalInterest != null and totalInterest != ''">
+                total_interest = #{totalInterest},
+            </if>
+            <if test="currentBidAmount != null and currentBidAmount != ''">
+                current_bid_amount = #{currentBidAmount},
+            </if>
+            <if test="currentBidInterest != null and currentBidInterest != ''">
+                current_bid_interest = #{currentBidInterest},
+            </if>
+            <if test="bidDeadline != null">
+                bid_deadline = #{bidDeadline},
+            </if>
+            <if test="bidDays != null and bidDays != ''">
+                bid_days = #{bidDays},
+            </if>
+            <if test="applyTime != null">
+                apply_time = #{applyTime},
+            </if>
+            <if test="publishTime != null">
+                publish_time = #{publishTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+</mapper>

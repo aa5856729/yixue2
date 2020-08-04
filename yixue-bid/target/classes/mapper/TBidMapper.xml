@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixue.loxc.bid.dao.TBidDao">
+    <select id="getTBidByList" resultType="com.yixue.loxc.pojo.TBidEntity" parameterType="java.util.Map">
+        select
+            id as id,
+            borrow_id as borrowId,
+            borrow_title as borrowTitle,
+            bid_amount as bidAmount,
+            bid_interest as bidInterest,
+            year_rate as yearRate,
+            borrow_state as borrowState,
+            bid_user_id as bidUserId,
+            bid_username as bidUsername,
+            bid_time as bidTime,
+            create_time	 as createTime
+        from t_bid
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="borrowId != null and borrowId != ''">
+                and borrow_id = #{borrowId}
+            </if>
+            <if test="borrowTitle != null and borrowTitle != ''">
+                and borrow_title = #{borrowTitle}
+            </if>
+            <if test="bidAmount != null and bidAmount != ''">
+                and bid_amount = #{bidAmount}
+            </if>
+            <if test="bidInterest != null and bidInterest != ''">
+                and bid_interest = #{bidInterest}
+            </if>
+            <if test="yearRate != null and yearRate != ''">
+                and year_rate = #{yearRate}
+            </if>
+            <if test="borrowState != null and borrowState != ''">
+                and borrow_state = #{borrowState}
+            </if>
+            <if test="bidUserId != null and bidUserId != ''">
+                and bid_user_id = #{bidUserId}
+            </if>
+            <if test="bidUsername != null and bidUsername != ''">
+                and bid_username = #{bidUsername}
+            </if>
+            <if test="bidTime != null and bidTime != ''">
+                and bid_time = #{bidTime}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                and create_time = #{createTime}
+            </if>
+            <if test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
+                and create_time > #{beginDate} and create_time &lt; #{endDate}
+            </if>
+        </trim>
+        order by create_time desc
+        <if test="beginPos != null and pageSize != null and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getCount" resultType="Integer" parameterType="java.util.Map">
+        select count(id) from t_bid
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="borrowId != null and borrowId != ''">
+                and borrow_id = #{borrowId}
+            </if>
+            <if test="borrowTitle != null and borrowTitle != ''">
+                and borrow_title = #{borrowTitle}
+            </if>
+            <if test="bidAmount != null and bidAmount != ''">
+                and bid_amount = #{bidAmount}
+            </if>
+            <if test="bidInterest != null and bidInterest != ''">
+                and bid_interest = #{bidInterest}
+            </if>
+            <if test="yearRate != null and yearRate != ''">
+                and year_rate = #{yearRate}
+            </if>
+            <if test="borrowState != null and borrowState != ''">
+                and borrow_state = #{borrowState}
+            </if>
+            <if test="bidUserId != null and bidUserId != ''">
+                and bid_user_id = #{bidUserId}
+            </if>
+            <if test="bidUsername != null and bidUsername != ''">
+                and bid_username = #{bidUsername}
+            </if>
+            <if test="bidTime != null and bidTime != ''">
+                and bid_time = #{bidTime}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                and create_time = #{createTime}
+            </if>
+            <if test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
+                and create_time > #{beginDate} and create_time &lt; #{endDate}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="insertBid" parameterType="com.yixue.loxc.pojo.TBidEntity">
+        INSERT INTO t_bid VALUE(
+	        #{id},#{borrowId},#{borrowTitle},#{bidAmount},#{bidInterest},#{yearRate},#{borrowState},#{bidUserId},#{bidUsername},#{bidTime},#{createTime})
+    </insert>
+</mapper>

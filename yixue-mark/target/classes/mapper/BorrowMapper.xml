@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixue.loxc.make.dao.BorrowDao">
+    <select id="getTBorrowByList" resultType="com.yixue.loxc.pojo.TBorrowEntity" parameterType="java.util.Map">
+        SELECT id as id
+            ,borrow_user_id as borrowUserId
+            ,borrow_username as borrowUsername
+            ,title as title
+            ,description as description
+            ,repayment_type as repaymentType
+            ,borrow_type as borrowType
+            ,borrow_state as borrowState
+            ,borrow_amount as borrowAmount
+            ,year_rate as yearRate
+            ,repayment_month as repaymentMonth
+            ,bid_num as bidNum
+            ,total_interest as totalInterest
+            ,current_bid_amount as currentBidAmount
+            ,current_bid_interest as currentBidInterest
+            ,bid_deadline as bidDeadline
+            ,bid_days as bidDays
+            ,apply_time as applyTime
+            ,publish_time as publishTime
+            ,create_time as createTime
+	    from t_borrow
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="borrowUserId != null and borrowUserId != ''">
+                and borrow_user_id = #{borrowUserId}
+            </if>
+            <if test="borrowUsername != null and borrowUsername != ''">
+                and borrow_username = #{borrowUsername}
+            </if>
+            <if test="title != null and title != ''">
+                and title = #{title}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+            <if test="repaymentType != null and repaymentType != ''">
+                and repayment_type = #{repaymentType}
+            </if>
+            <if test="borrowType != null and borrowType != ''">
+                and borrow_type = #{borrowType}
+            </if>
+            <if test="borrowStates != null and borrowStates != ''">
+                and borrow_state IN (${borrowStates})
+            </if>
+            <if test="borrowAmount != null and borrowAmount != ''">
+                and borrow_amount = #{borrowAmount}
+            </if>
+            <if test="yearRate != null and yearRate != ''">
+                and year_rate = #{yearRate}
+            </if>
+            <if test="repaymentMonth != null and repaymentMonth != ''">
+                and repayment_month = #{repaymentMonth}
+            </if>
+            <if test="bidNum != null and bidNum != ''">
+                and bid_num = #{bidNum}
+            </if>
+            <if test="totalInterest != null and totalInterest != ''">
+                and total_interest = #{totalInterest}
+            </if>
+            <if test="currentBidAmount != null and currentBidAmount != ''">
+                and current_bid_amount = #{currentBidAmount}
+            </if>
+            <if test="currentBidInterest != null and currentBidInterest != ''">
+                and current_bid_interest = #{currentBidInterest}
+            </if>
+            <if test="bidDeadline != null and bidDeadline != ''">
+                and bid_deadline = #{bidDeadline}
+            </if>
+            <if test="bidDays != null and bidDays != ''">
+                and bid_days = #{bidDays}
+            </if>
+            <if test="applyTime != null and applyTime != ''">
+                and apply_time = #{applyTime}
+            </if>
+            <if test="publishTime != null and publishTime != ''">
+                and publish_time = #{publishTime}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                and create_time = #{createTime}
+            </if>
+            <if test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
+                and create_time > #{beginDate} and create_time &lt; #{endDate}
+            </if>
+        </trim>
+        order by create_time desc
+        <if test="beginPos != null and pageSize != null and pageSize != ''">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getTBorrowByCount" resultType="Integer" parameterType="java.util.Map">
+        select count(id) from t_borrow 
+          <trim prefix="where" prefixOverrides="and | or">
+              <if test="id != null and id != ''">
+                  and id = #{id}
+              </if>
+              <if test="borrowUserId != null and borrowUserId != ''">
+                  and borrow_user_id = #{borrowUserId}
+              </if>
+              <if test="borrowUsername != null and borrowUsername != ''">
+                  and borrow_username = #{borrowUsername}
+              </if>
+              <if test="title != null and title != ''">
+                  and title = #{title}
+              </if>
+              <if test="description != null and description != ''">
+                  and description = #{description}
+              </if>
+              <if test="repaymentType != null and repaymentType != ''">
+                  and repayment_type = #{repaymentType}
+              </if>
+               <if test="borrowType != null and borrowType != ''">
+                  and borrow_type = #{borrowType}
+              </if>
+               <if test="borrowState != null and borrowState != ''">
+                   and borrow_state IN (${borrowStates})
+              </if>
+               <if test="borrowAmount != null and borrowAmount != ''">
+                  and borrow_amount = #{borrowAmount}
+              </if>
+               <if test="yearRate != null and yearRate != ''">
+                  and year_rate = #{yearRate}
+              </if>
+               <if test="repaymentMonth != null and repaymentMonth != ''">
+                  and repayment_month = #{repaymentMonth}
+              </if>
+               <if test="bidNum != null and bidNum != ''">
+                  and bid_num = #{bidNum}
+              </if>
+               <if test="totalInterest != null and totalInterest != ''">
+                  and total_interest = #{totalInterest}
+              </if>
+               <if test="currentBidAmount != null and currentBidAmount != ''">
+                  and current_bid_amount = #{currentBidAmount}
+              </if>
+               <if test="currentBidInterest != null and currentBidInterest != ''">
+                  and current_bid_interest = #{currentBidInterest}
+              </if>
+              <if test="bidDeadline != null and bidDeadline != ''">
+                  and bid_deadline = #{bidDeadline}
+              </if>
+              <if test="bidDays != null and bidDays != ''">
+                  and bid_days = #{bidDays}
+              </if>
+              <if test="applyTime != null and applyTime != ''">
+                  and apply_time = #{applyTime}
+              </if>
+              <if test="publishTime != null and publishTime != ''">
+                  and publish_time = #{publishTime}
+              </if>
+              <if test="createTime != null and createTime != ''">
+                  and create_time = #{createTime}
+              </if>
+              <if test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
+                  and create_time > #{beginDate} and create_time &lt; #{endDate}
+              </if>
+          </trim>
+    </select>
+
+    <select id="getBorrowById" resultType="com.yixue.loxc.pojo.TBorrowEntity" parameterType="String">
+        select
+            id as id
+            ,borrow_user_id as borrowUserId
+            ,borrow_username as borrowUsername
+            ,title as title
+            ,description as description
+            ,repayment_type as repaymentType
+            ,borrow_type as borrowType
+            ,borrow_state as borrowState
+            ,borrow_amount as borrowAmount
+            ,year_rate as yearRate
+            ,repayment_month as repaymentMonth
+            ,bid_num as bidNum
+            ,total_interest as totalInterest
+            ,current_bid_amount as currentBidAmount
+            ,current_bid_interest as currentBidInterest
+            ,bid_deadline as bidDeadline
+            ,bid_days as bidDays
+            ,apply_time as applyTime
+            ,publish_time as publishTime
+            ,create_time as createTime
+            from t_borrow where id = #{borrowId}
+    </select>
+
+    <insert id="setTBorrow" parameterType="com.yixue.loxc.pojo.TBorrowEntity">
+        insert into t_borrow(id,borrow_user_id,borrow_username,title,description,repayment_type,
+                              borrow_type,borrow_state,borrow_amount,year_rate,repayment_month,bid_num,
+                              total_interest,current_bid_amount,current_bid_interest,bid_days,
+                              apply_time,create_time)
+                    value(#{id},#{borrowUserId},#{borrowUsername},#{title},
+                    #{description},#{repaymentType},#{borrowType},#{borrowState},#{borrowAmount},
+                    #{yearRate},#{repaymentMonth},#{bidNum},#{totalInterest},#{currentBidAmount},
+                    #{currentBidInterest},#{bidDays},#{applyTime},#{createTime})
+    </insert>
+
+    <update id="updateTBorrow" parameterType="com.yixue.loxc.pojo.TBorrowEntity">
+        update t_borrow
+          <trim prefix="set" suffixOverrides=",">
+              <if test="borrowUserId != null and borrowUserId != ''">
+                  borrow_user_id = #{borrowUserId},
+              </if>
+              <if test="borrowUsername != null and borrowUsername != ''">
+                  borrow_username = #{borrowUsername},
+              </if>
+              <if test="title != null and title != ''">
+                  title = #{title},
+              </if>
+              <if test="description != null and description != ''">
+                  description = #{description},
+              </if>
+              <if test="repaymentType != null and repaymentType != ''">
+                  repayment_type = #{repaymentType},
+              </if>
+              <if test="borrowType != null and borrowType != ''">
+                  borrow_type = #{borrowType},
+              </if>
+              <if test="borrowState != null and borrowState != ''">
+                  borrow_state = #{borrowState},
+              </if>
+              <if test="borrowAmount != null and borrowAmount != ''">
+                  borrow_amount = #{borrowAmount},
+              </if>
+              <if test="yearRate != null and yearRate != ''">
+                  year_rate = #{yearRate},
+              </if>
+              <if test="repaymentMonth != null and repaymentMonth != ''">
+                  repayment_month = #{repaymentMonth},
+              </if>
+              <if test="bidNum != null and bidNum != ''">
+                  bid_num = #{bidNum},
+              </if>
+              <if test="totalInterest != null and totalInterest != ''">
+                  total_interest = #{totalInterest},
+              </if>
+              <if test="currentBidAmount != null and currentBidAmount != ''">
+                  current_bid_amount = #{currentBidAmount},
+              </if>
+              <if test="currentBidInterest != null and currentBidInterest != ''">
+                  current_bid_interest = #{currentBidInterest},
+              </if>
+              <if test="bidDeadline != null">
+                  bid_deadline = #{bidDeadline},
+              </if>
+              <if test="bidDays != null and bidDays != ''">
+                  bid_days = #{bidDays},
+              </if>
+              <if test="applyTime != null">
+                  apply_time = #{applyTime},
+              </if>
+              <if test="publishTime != null">
+                  publish_time = #{publishTime},
+              </if>
+              <if test="createTime != null">
+                  create_time = #{createTime}
+              </if>
+          </trim>
+        where id = #{id}
+    </update>
+</mapper>
