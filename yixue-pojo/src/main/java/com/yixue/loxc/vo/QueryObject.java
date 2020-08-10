@@ -14,4 +14,6 @@ public class QueryObject {
     private Timestamp beginDate;                //开始日期
     private Timestamp endDate;                  //结束日期
     private String borrowId;                    //借款id
+    private String state;
+    private String repaymentType;
 }

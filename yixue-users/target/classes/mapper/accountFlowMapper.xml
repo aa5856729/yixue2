@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yixue.loxc.user.dao.AccountFlowMapper">
+    <insert id="add" parameterType="com.yixue.loxc.pojo.TAccountFlow">
+        INSERT INTO t_account_flow(account_id, amount, flow_type, available_amount, freeze_amount, remark, create_time)
+        VALUES (#{accountId}, #{amount}, #{flowType}, #{availableAmount}, #{freezeAmount}, #{remark}, #{createTime})
+    </insert>
+</mapper>

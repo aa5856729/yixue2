@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Controller
 @CrossOrigin
-@RequestMapping("/finance/borrow")
+@RequestMapping("/borrow")
 public class BorrowController {
 
     @Resource

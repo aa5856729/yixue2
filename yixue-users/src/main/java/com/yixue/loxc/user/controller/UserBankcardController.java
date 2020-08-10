@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/user/bankcard")
+@RequestMapping("/bankcard")
 public class UserBankcardController {
 
     @Resource
@@ -25,7 +25,7 @@ public class UserBankcardController {
      * @param id
      * @return
      */
-    @PostMapping("/get/{id}")
+    @GetMapping("/get/{id}")
     public Result<TWithdrawEntity> get(@PathVariable String id){
         TBankCardEntity bankCardEntity= tBankCardService.getBank(id);
 
@@ -52,7 +52,7 @@ public class UserBankcardController {
 
 
         TBankCardEntity tBankCardEntity=new TBankCardEntity();
-        tBankCardEntity.setBalance(1000L);
+        tBankCardEntity.setBalance(100L);
         tBankCardEntity.setBankName(bankName);
         tBankCardEntity.setBranchName(branchName);
         tBankCardEntity.setCardNumber(cardNumber);

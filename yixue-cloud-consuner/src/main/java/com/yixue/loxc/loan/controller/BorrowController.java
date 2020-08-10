@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
-@Controller
+@RestController
 @CrossOrigin
 @RequestMapping("/finance/borrow")
 public class BorrowController {
@@ -23,28 +23,16 @@ public class BorrowController {
 
     @PostMapping("/add")
     public Result<Object> add(TBorrowEntity tBorrow) {
-        return restTemplate.postForObject(PAYMENT_URL + "/finance/borrow/add", tBorrow, Result.class);
-    }
-
-    @RequestMapping(value = "/query", produces = "application/json")
-    public Result<TBorrowEntity> getTBorrow(QueryObject queryObject) {
-        return restTemplate.postForObject(PAYMENT_URL + "/finance/borrow/query", queryObject, Result.class);
-    }
-
-    @GetMapping("/get/{borrowId}")
-    @ResponseBody
-    public Result<TBorrowEntity> getBorrowInfo(@PathVariable String borrowId) {
-        return restTemplate.postForObject(PAYMENT_URL + "/finance/borrow/get/{borrowId}", borrowId, Result.class);
+        return restTemplate.postForObject(PAYMENT_URL + "/borrow/add", tBorrow, Result.class);
     }
 
     @PostMapping("/audit")
-    @ResponseBody
     public Result<Object> Audit(TBorrowEntity tBorrowEntity) {
-        return restTemplate.postForObject(PAYMENT_URL + "/finance/borrow/audit", tBorrowEntity, Result.class);
+        return restTemplate.postForObject(PAYMENT_URL + "/borrow/audit", tBorrowEntity, Result.class);
     }
 
     @RequestMapping("/loan/audit")
     public Result<Object> loanAudit(TBorrowEntity tBorrowEntity) {
-        return restTemplate.postForObject(PAYMENT_URL + "/finance/borrow/loan/audit", tBorrowEntity, Result.class);
+        return restTemplate.postForObject(PAYMENT_URL + "/borrow/loan/audit", tBorrowEntity, Result.class);
     }
 }

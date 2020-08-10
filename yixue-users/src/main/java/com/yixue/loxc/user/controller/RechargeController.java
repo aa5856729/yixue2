@@ -5,6 +5,7 @@ import com.yixue.loxc.pojo.Result;
 import com.yixue.loxc.pojo.entity.TRechargeEntity;
 import com.yixue.loxc.pojo.vo.LiuShuiVo;
 import com.yixue.loxc.user.service.TRechargeService;
+import com.yixue.loxc.vo.UserVO;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -13,24 +14,21 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 @RestController
-@RequestMapping("user/accountflow")
 @CrossOrigin
 public class RechargeController {
 
     @Resource
     TRechargeService tRechargeService;
 
-    @PostMapping("/query")
-    public Result<TRechargeEntity> query(@RequestParam("userId") String userId,@RequestParam(value = "beginDate",required = false) String beginDate,
-                                         @RequestParam(value = "endDate",required = false) String endDate,
-                                         @RequestParam(value = "currentPage",required = false) String currentPage ) throws ParseException {
+    @PostMapping("/accountflow/query")
+    public Result<TRechargeEntity> query(@RequestBody UserVO userVO) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd ");
         LiuShuiVo liuShuiVo=new LiuShuiVo();
-        liuShuiVo.setUserId(userId);
-        if (beginDate!=null){
-            liuShuiVo.setBeginDate(dateFormat.parse(beginDate));
-            liuShuiVo.setEndDate(dateFormat.parse(endDate));
-            liuShuiVo.setCurrentPage(Integer.parseInt(currentPage));
+        liuShuiVo.setUserId(userVO.getUserId());
+        if (userVO.getBeginDate()!=null){
+            liuShuiVo.setBeginDate(dateFormat.parse(userVO.getBeginDate()));
+            liuShuiVo.setEndDate(dateFormat.parse(userVO.getEndDate()));
+            liuShuiVo.setCurrentPage(Integer.parseInt(userVO.getCurrentPage()));
         }
 
          Page<TRechargeEntity> rechargeEntityList=tRechargeService.selectRecharge(liuShuiVo);

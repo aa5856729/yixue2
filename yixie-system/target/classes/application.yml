@@ -1,0 +1,29 @@
+server:
+  port: 9090
+
+
+spring:
+  application:
+    name: yixie-system
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource      #当前数据源操作类型
+    driver-class-name: com.mysql.jdbc.Driver          #mysql驱动包
+    url: jdbc:mysql://localhost:3306/yixue?serverTimezone=UTC&characterEncoding=utf-8
+    username: root
+    password: 123456
+
+  jackson:
+    date-format: yyyy-MM-dd HH-mm-ss
+    time-zone: Asia/Shanghai
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.yixue.loxc.system.dao
+
+logging:
+  level:
+    root: info
+
+
+
+
+
