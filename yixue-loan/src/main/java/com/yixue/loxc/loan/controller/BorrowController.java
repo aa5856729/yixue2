@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Controller
 @CrossOrigin
-@RequestMapping("/borrow")
+@RequestMapping("/finance/borrow")
 public class BorrowController {
 
     @Resource
@@ -44,7 +44,6 @@ public class BorrowController {
     @ResponseBody
     public Result<TBorrowEntity> getTBorrow(QueryObject queryObject) {
         Map<String, Object> param = new HashMap<String, Object>();
-        System.out.println(queryObject);
         if (!"".equals(queryObject.getUserId())) {
             param.put("borrowUserId", queryObject.getUserId());
         }
@@ -61,9 +60,7 @@ public class BorrowController {
         }
 
         Page page = borrowService.getTBorrowList(param, queryObject.getCurrentPage(), Constants.DEFAULT_PAGE_SIZE);
-        for (int i = 0; i < page.getListData().size(); i++) {
-            System.out.println(page.getListData().get(i));
-        }
+
         if (null != page.getListData()) {
             return new Result(200, "成功", page);
         }
@@ -73,7 +70,7 @@ public class BorrowController {
     @GetMapping("/get/{borrowId}")
     @ResponseBody
     public Result<TBorrowEntity> getBorrowInfo(@PathVariable String borrowId) {
-        TBorrowEntity tBorrow = borrowService.getTBorrowByID(borrowId);
+        TBorrowEntity tBorrow = borrowService.getTBorrowById(borrowId);
         if (tBorrow != null) {
             return new Result(200, "获取数据成功", tBorrow);
         } else {
@@ -83,8 +80,8 @@ public class BorrowController {
 
     @PostMapping("/audit")
     @ResponseBody
-    public Result<Object> Audit(TBorrowEntity tBorrowEntity) {
-        if (borrowService.updateTBorrow(tBorrowEntity)) {
+    public Result<Object> Audit(String borrowId, String borrowState) {
+        if (borrowService.updateTBorrow(borrowId, borrowState)) {
             return new Result(200, "操作成功");
         } else {
             return new Result(222, "异常，操作失败！");
@@ -93,8 +90,8 @@ public class BorrowController {
 
     @RequestMapping("/loan/audit")
     @ResponseBody
-    public Result loanAudit(TBorrowEntity tBorrowEntity) {
-        if (borrowService.loanAudit(tBorrowEntity)) {
+    public Result loanAudit(String borrowId, String borrowState) {
+        if (borrowService.loanAudit(borrowId, borrowState)) {
             return new Result(200, "操作成功");
         } else {
             return new Result(222, "异常，操作失败！");

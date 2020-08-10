@@ -53,7 +53,7 @@
         </trim>
     </select>
 
-    <select id="getTBorrowById" parameterType="String" resultType="com.yixue.loxc.pojo.TBorrowEntity">
+    <select id="getTBorrowById" resultType="com.yixue.loxc.pojo.TBorrowEntity">
         SELECT ID,
                BORROW_USER_ID,
                BORROW_USERNAME,
@@ -141,4 +141,36 @@
         </trim>
         where id = #{id}
     </update>
+
+    <insert id="addRepayment" parameterType="com.yixue.loxc.pojo.TRepayment">
+        INSERT INTO t_repayment(id, borrow_id, borrow_user_id, borrow_title, deadline, repayment_time, total_amount,
+                                principal, interest, period, state, borrow_type, repayment_type, create_time)
+        VALUES (#{id}, #{borrowId}, #{borrowUserId}, #{borrowTitle}, #{deadline}, #{repaymentTime}, #{totalAmount},
+                #{principal}, #{interest}, #{period}, #{state}, #{borrowType}, #{repaymentType}, #{createTime})
+    </insert>
+
+    <select id="getBidListByBorrowId" resultType="com.yixue.loxc.pojo.TBid">
+        SELECT id,
+               borrow_id,
+               borrow_title,
+               bid_amount,
+               bid_interest,
+               year_rate,
+               borrow_state,
+               bid_user_id,
+               bid_username,
+               bid_time,
+               create_time
+        FROM t_bid
+        WHERE borrow_id = #{borrowId}
+    </select>
+
+    <insert id="addRepaymentDetail" parameterType="com.yixue.loxc.pojo.TRepaymentDetail">
+        INSERT INTO t_repayment_detail(id, bid_id, borrow_id, repayment_id, borrow_user_id, bid_user_id, borrow_title,
+                                       total_amount, principal, interest, period, deadline, repayment_time,
+                                       repayment_type, create_time)
+        VALUES (#{id}, #{bidId}, #{borrowId}, #{repaymentId}, #{borrowUserId}, #{bidUserId}, #{borrowTitle},
+                #{totalAmount}, #{principal}, #{interest}, #{period}, #{deadline}, #{repaymentTime}, #{repaymentType},
+                #{createTime})
+    </insert>
 </mapper>
