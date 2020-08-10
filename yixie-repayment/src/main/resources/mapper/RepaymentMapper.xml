@@ -117,13 +117,6 @@
         WHERE id = #{id}
     </update>
 
-    <insert id="add" parameterType="com.yixue.loxc.pojo.TRepayment">
-        INSERT INTO t_repayment(id, borrow_id, borrow_user_id, borrow_title, deadline, repayment_time, total_amount,
-                                principal, interest, period, state, borrow_type, repayment_type, create_time)
-        VALUES (#{id}, #{borrowId}, #{borrowUserId}, #{borrowTitle}, #{deadline}, #{repaymentTime}, #{totalAmount},
-                #{principal}, #{interest}, #{period}, #{state}, #{borrowType}, #{repaymentType}, #{createTime})
-    </insert>
-
     <select id="getRepaymentDetailList" resultType="com.yixue.loxc.pojo.TRepaymentDetail" parameterType="java.util.Map">
         SELECT id,
         bid_id,
@@ -184,15 +177,6 @@
         </trim>
     </select>
 
-    <insert id="addRepaymentDetail" parameterType="com.yixue.loxc.pojo.TRepaymentDetail">
-        INSERT INTO t_repayment_detail(id, bid_id, borrow_id, repayment_id, borrow_user_id, bid_user_id, borrow_title,
-                                       total_amount, principal, interest, period, deadline, repayment_time,
-                                       repayment_type, create_time)
-        VALUES (#{id}, #{bidId}, #{borrowId}, #{repaymentId}, #{borrowUserId}, #{bidUserId}, #{borrowTitle},
-                #{totalAmount}, #{principal}, #{interest}, #{period}, #{deadline}, #{repaymentTime}, #{repaymentType},
-                #{createTime})
-    </insert>
-
     <select id="getOverdueCount" resultType="Integer">
         SELECT COUNT(1)
         FROM t_repayment
@@ -200,25 +184,35 @@
           AND state = 4
     </select>
 
-    <select id="getBidListByBorrowId" resultType="com.yixue.loxc.pojo.TBid">
-        SELECT id,
-               borrow_id,
-               borrow_title,
-               bid_amount,
-               bid_interest,
-               year_rate,
-               borrow_state,
-               bid_user_id,
-               bid_username,
-               bid_time,
-               create_time
-        FROM t_bid
-        WHERE borrow_id = #{id}
-    </select>
-
     <update id="updateRepayment" parameterType="com.yixue.loxc.pojo.TRepayment">
         UPDATE T_REPAYMENT
         SET STATE = #{state}
         WHERE ID = #{id}
+    </update>
+
+    <select id="getTRepaymentDetail" resultType="com.yixue.loxc.pojo.TRepaymentDetail">
+        SELECT id,
+               bid_id,
+               borrow_id,
+               repayment_id,
+               borrow_user_id,
+               bid_user_id,
+               borrow_title,
+               total_amount,
+               principal,
+               interest,
+               period,
+               deadline,
+               repayment_time,
+               repayment_type,
+               create_time
+        FROM t_repayment_detail
+        WHERE bid_id = #{bidId}
+          AND period = #{period}
+    </select>
+
+    <update id="updateRepaymentDetail" parameterType="com.yixue.loxc.pojo.TRepaymentDetail">
+        UPDATE t_repayment_detail
+        SET repayment_time = #{repaymentTime}
     </update>
 </mapper>

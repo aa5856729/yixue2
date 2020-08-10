@@ -4,6 +4,7 @@ import com.yixue.loxc.commons.Constants;
 import com.yixue.loxc.commons.EmptyUtils;
 import com.yixue.loxc.commons.Page;
 import com.yixue.loxc.loan.dao.BorrowMapper;
+import com.yixue.loxc.loan.service.BorrowService;
 import com.yixue.loxc.pojo.*;
 import com.yixue.loxc.pojo.entity.TUserWalletEntity;
 import com.yixue.loxc.repayment.dao.RepaymentMapper;
@@ -17,6 +18,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class RepaymentServiceImpl implements RepaymentService {
@@ -25,7 +27,7 @@ public class RepaymentServiceImpl implements RepaymentService {
     private RepaymentMapper repaymentMapper;
 
     @Resource
-    private BorrowMapper borrowMapper;
+    private BorrowService borrowService;
 
     @Resource
     private UserWalletService userWalletService;
@@ -64,7 +66,7 @@ public class RepaymentServiceImpl implements RepaymentService {
     @Override
     public boolean repay(String id, String userId) {
         TRepayment tRepayment = repaymentMapper.getRepaymentById(id);                       //获取还款记录
-        TBorrowEntity tBorrowEntity = borrowMapper.getTBorrowById(tRepayment.getBorrowId());//获取借款记录
+        TBorrowEntity tBorrowEntity = borrowService.getTBorrowById(tRepayment.getBorrowId());//获取借款记录
         TUserWalletEntity tUserWalletEntity;                                                //获取用户钱包信息
         TAccountFlow tAccountFlow;                                                          //生成账户流水
 
@@ -83,17 +85,24 @@ public class RepaymentServiceImpl implements RepaymentService {
             }
 
             if (repaymentMapper.repay(tRepayment) > 0) {
-                //最后一期还款完成后修改状态为已还清
-                if (tRepayment.getPeriod() == tBorrowEntity.getRepaymentMonth()) {
-                    tBorrowEntity.setBorrowState(50);
-                    borrowMapper.updateTBorrow(tBorrowEntity);
 
-                    //如果没有过逾期
-                    if (repaymentMapper.getOverdueCount(tRepayment.getBorrowId()) == 0) {
-                        tUserWalletEntity.setCreditScore(tUserWalletEntity.getCreditScore() + 10);      //加十分
-                        tUserWalletEntity.setCreditLine(tUserWalletEntity.getCreditLine() + 10 * 100);  //一分等于100额度
-                        tUserWalletEntity.setResidualCreditLine(tUserWalletEntity.getResidualCreditLine() + 10 * 100);
+                //最后一期还款完成后修改状态为已还清
+                boolean result = true;
+                List<TRepayment> repaymentList = repaymentMapper.getRepaymentByBorrowId(tBorrowEntity.getId());
+                for (int i = 0; i < repaymentList.size(); i++) {
+                    if (repaymentList.get(i).getState() == 1 || repaymentList.get(i).getState() == 2) {
+                        result = false;
                     }
+                }
+
+                //如果没有过逾期
+                if (result) {
+                    tBorrowEntity.setBorrowState(50);
+                    borrowService.updateTBorrow(tBorrowEntity.getId(), tBorrowEntity.getBorrowState().toString());
+
+                    tUserWalletEntity.setCreditScore(tUserWalletEntity.getCreditScore() + 10);      //加十分
+                    tUserWalletEntity.setCreditLine(tUserWalletEntity.getCreditLine() + 10 * 100 * 100);  //一分等于100额度
+                    tUserWalletEntity.setResidualCreditLine(tUserWalletEntity.getResidualCreditLine() + 10 * 100 * 100);
                 }
 
                 //修改还款账户金额
@@ -108,42 +117,43 @@ public class RepaymentServiceImpl implements RepaymentService {
                 tAccountFlow.setAvailableAmount(tUserWalletEntity.getAvailableAmount());
                 tAccountFlow.setFlowType(30);
                 tAccountFlow.setFreezeAmount(tUserWalletEntity.getFreezeAmount());
-                tAccountFlow.setRemark("还款" + tBorrowEntity.getTitle() + "成功，还款金额：" + tAccountFlow.getAmount() + "元");
+                tAccountFlow.setRemark("还款" + tBorrowEntity.getTitle() + "成功，还款金额：" + tAccountFlow.getAmount() / 100 + "元");
                 tAccountFlow.setCreateTime(new Timestamp(new Date().getTime()));
 
-                userWalletService.update(tUserWalletEntity);
+                userWalletService.updateUserWallet(tUserWalletEntity);
                 accountFlowService.add(tAccountFlow);
 
                 //相关投资人收益更新
-                List<TBid> bidList = repaymentMapper.getBidListByBorrowId(tRepayment.getBorrowId());
+                List<TBid> bidList = borrowService.getBidListByBorrowId(tRepayment.getBorrowId());
                 for (int i = 0; i < bidList.size(); i++) {
                     TBid bid = bidList.get(i);
                     tUserWalletEntity = userWalletService.getwallet(bid.getBidUserId());
-                    tUserWalletEntity.setAvailableAmount(tUserWalletEntity.getAvailableAmount() + bid.getBidAmount() + bid.getBidInterest());
-                    tUserWalletEntity.setInterestPending(tUserWalletEntity.getInterestPending() - bid.getBidInterest());
-                    tUserWalletEntity.setPrincipalPending(tUserWalletEntity.getPrincipalPending() - bid.getBidAmount());
-                    userWalletService.update(tUserWalletEntity);
 
-                    //新增一条账户流水
+                    TRepaymentDetail tRepaymentDetail = repaymentMapper.getTRepaymentDetail(bid.getId(), tRepayment.getPeriod());
+
+                    //修改每位投资人的余额等信息
+                    tUserWalletEntity.setAvailableAmount(tUserWalletEntity.getAvailableAmount() + tRepaymentDetail.getTotalAmount());
+                    tUserWalletEntity.setInterestPending(tUserWalletEntity.getInterestPending() - tRepaymentDetail.getInterest());
+                    tUserWalletEntity.setPrincipalPending(tUserWalletEntity.getPrincipalPending() - tRepaymentDetail.getPrincipal());
+                    userWalletService.updateUserWallet(tUserWalletEntity);
+
+                    //为每位投资人新增一条收款记录
+                    tRepaymentDetail.setRepaymentTime(new Timestamp(new Date().getTime()));
+                    repaymentMapper.updateRepaymentDetail(tRepaymentDetail);
+
+                    //为每位投资人新增一条账户流水
                     tAccountFlow = new TAccountFlow();
                     tAccountFlow.setAccountId(tUserWalletEntity.getAccountId());
-                    tAccountFlow.setAmount(bid.getBidAmount() + bid.getBidInterest());
+                    tAccountFlow.setAmount(tRepaymentDetail.getTotalAmount());
                     tAccountFlow.setFlowType(41);
                     tAccountFlow.setAvailableAmount(tUserWalletEntity.getAvailableAmount());
                     tAccountFlow.setFreezeAmount(tUserWalletEntity.getFreezeAmount());
-                    tAccountFlow.setRemark("回款" + tBorrowEntity.getTitle() + "成功，回款金额：" + tAccountFlow.getAmount() + "元");
+                    tAccountFlow.setRemark("回款" + tBorrowEntity.getTitle() + "成功，回款金额：" + tAccountFlow.getAmount() / 100 + "元");
                     tAccountFlow.setCreateTime(new Timestamp(new Date().getTime()));
+                    accountFlowService.add(tAccountFlow);
                 }
                 return true;
             }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean add(TRepayment tRepayment) {
-        if (repaymentMapper.add(tRepayment) > 0) {
-            return true;
         }
         return false;
     }
@@ -171,29 +181,25 @@ public class RepaymentServiceImpl implements RepaymentService {
         return repaymentMapper.getRepaymentDetailById(id);
     }
 
-    @Override
-    public Integer addRepaymentDetail(TRepaymentDetail tRepaymentDetail) {
-        return repaymentMapper.addRepaymentDetail(tRepaymentDetail);
-    }
-
     //任务调度器
-    @Scheduled(fixedDelay = 30 * 1000)
-    public void checkTime() {
-        List<TRepayment> repaymentList = repaymentMapper.getRepaymentList(null);
-        for (int i = 0; i < repaymentList.size(); i++) {
-            if (repaymentList.get(i).getRepaymentTime() == null) {
-                if (repaymentList.get(i).getDeadline().after(new Date())) {
-                    repaymentList.get(i).setState(1);
-                    repaymentMapper.updateRepayment(repaymentList.get(i));
-                    TUserWalletEntity tUserWallet = userWalletService.getwallet(repaymentList.get(i).getBorrowUserId());
-                    if (tUserWallet.getCreditScore() > 0) {
-                        tUserWallet.setCreditScore(tUserWallet.getCreditScore() - 1);
-                        tUserWallet.setCreditLine(tUserWallet.getCreditLine() - 100);
-                        tUserWallet.setResidualCreditLine(tUserWallet.getResidualCreditLine() - 100);
-                        userWalletService.update(tUserWallet);
-                    }
-                }
-            }
-        }
-    }
+//    @Scheduled(fixedDelay = 30 * 1000)
+//    public void checkTime() {
+//        List<TRepayment> repaymentList = repaymentMapper.getRepaymentList(null);
+//        for (int i = 0; i < repaymentList.size(); i++) {
+//            if (repaymentList.get(i).getRepaymentTime() == null) {
+//                if (repaymentList.get(i).getDeadline().before(new Date())) {
+//                    repaymentList.get(i).setState(1);
+//                    repaymentMapper.updateRepayment(repaymentList.get(i));
+//                    TUserWalletEntity tUserWallet = userWalletService.getwallet(repaymentList.get(i).getBorrowUserId());
+//                    if (tUserWallet.getCreditScore() > 0) {
+//                        tUserWallet.setCreditScore(tUserWallet.getCreditScore() - 1);
+//                        tUserWallet.setCreditLine(tUserWallet.getCreditLine() - 100);
+//                        tUserWallet.setResidualCreditLine(tUserWallet.getResidualCreditLine() - 100);
+//                        System.out.println(tUserWallet);
+//                        userWalletService.update(tUserWallet);
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
