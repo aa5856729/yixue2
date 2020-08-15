@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 9002
 
 
 spring:
@@ -21,7 +21,7 @@ mybatis-plus:
 
 logging:
   level:
-    root: info
+    root: debug
 
 
 

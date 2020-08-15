@@ -28,25 +28,26 @@ public class WithdrawServiceImpl implements WithdrawService {
 
     @Resource
     TBankCardDao tBankCardDao;
+
     /*
     提现
      */
     @Override
     @Transactional //事务
     public int add(WithdrawVo withdrawVo) {
-        TUserWalletEntity tUserWalletEntity=new TUserWalletEntity();
+        TUserWalletEntity tUserWalletEntity = new TUserWalletEntity();
 
         //账户id条件
         QueryWrapper<TUserWalletEntity> wrapper = new QueryWrapper<TUserWalletEntity>().eq("account_id", withdrawVo.getUserId());
-        int i=0;
+        int i = 0;
         //对账户余额查询
         TUserWalletEntity walletEntity = userWalletDao.selectOne(wrapper);
 
-        if (walletEntity.getAvailableAmount()>withdrawVo.getAmount()){  //余额大于提现金额
-            tUserWalletEntity.setAvailableAmount(walletEntity.getAvailableAmount()-withdrawVo.getAmount());
+        if (walletEntity.getAvailableAmount() > withdrawVo.getAmount()) {  //余额大于提现金额
+            tUserWalletEntity.setAvailableAmount(walletEntity.getAvailableAmount() - withdrawVo.getAmount());
             //对账户余额进行减少
-            i = userWalletDao.update(tUserWalletEntity,wrapper);
-        }else {
+            i = userWalletDao.update(tUserWalletEntity, wrapper);
+        } else {
             return 0;
         }
 
@@ -57,14 +58,14 @@ public class WithdrawServiceImpl implements WithdrawService {
         TBankCardEntity bankCardEntity = tBankCardDao.selectOne(queryWrapper);
 
         //对银行卡金额进行增加
-        TBankCardEntity tBankCardEntity=new TBankCardEntity();
-        tBankCardEntity.setBalance(bankCardEntity.getBalance()+withdrawVo.getAmount());
+        TBankCardEntity tBankCardEntity = new TBankCardEntity();
+        tBankCardEntity.setBalance(bankCardEntity.getBalance() + withdrawVo.getAmount());
         int update = tBankCardDao.update(tBankCardEntity, queryWrapper);
 
-        TWithdrawEntity withdrawEntity=new TWithdrawEntity();
-        if (i>0&&update>0){
-            BeanUtils.copyProperties(withdrawVo,withdrawEntity);
-            withdrawEntity.setId(UUID.randomUUID().toString().substring(0,31));
+        TWithdrawEntity withdrawEntity = new TWithdrawEntity();
+        if (i > 0 && update > 0) {
+            BeanUtils.copyProperties(withdrawVo, withdrawEntity);
+            withdrawEntity.setId(UUID.randomUUID().toString().substring(0, 31));
             withdrawEntity.setCreateTime(new Date());
             System.err.println(withdrawEntity);
             //添加记录

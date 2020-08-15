@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="yixue-bid" />
+        <module name="yixue-commons" />
+        <module name="yixue-users" />
+        <module name="yixie-system" />
+        <module name="yixue-pojo" />
+        <module name="yixue-loan" />
+        <module name="yixue-mark" />
+        <module name="yixie-repayment" />
+        <module name="yixue-cloud-consuner" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="yixie-repayment" target="1.8" />
+      <module name="yixie-system" target="1.8" />
+      <module name="yixue" target="1.8" />
+      <module name="yixue-bid" target="1.8" />
+      <module name="yixue-cloud-consuner" target="1.8" />
+      <module name="yixue-commons" target="1.8" />
+      <module name="yixue-loan" target="1.8" />
+      <module name="yixue-mark" target="1.8" />
+      <module name="yixue-pojo" target="1.8" />
+      <module name="yixue-users" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

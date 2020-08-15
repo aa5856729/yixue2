@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:maven" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:maven" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:yixie-repayment" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:maven" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:yixie-system" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:maven" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:yixue-bid" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:maven" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:yixue-loan" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:maven" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:yixue-mark" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:maven" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:yixue-users" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f4d24430-a7eb-42b4-9d4a-287e87ba6276" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/System.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/System.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/config/MybatisPlusConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/config/MybatisPlusConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/controller/SystemDictionaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/controller/SystemDictionaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/controller/SystemDictionaryItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/controller/SystemDictionaryItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/controller/TLoginLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/controller/TLoginLogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/controller/TRechargeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/controller/TRechargeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/dao/SystemDictionaryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/dao/SystemDictionaryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/dao/SystemDictionaryItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/dao/SystemDictionaryItemDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/dao/TLoginLogDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/dao/TLoginLogDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/SystemDictionaryItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/SystemDictionaryItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/SystemDictionaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/SystemDictionaryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/TLoginLogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/TLoginLogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/TRechargeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/TRechargeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/impl/TBankCardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/impl/TBankCardServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/impl/TLoginLogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/impl/TLoginLogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/impl/TRechargeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/java/com/yixue/loxc/system/service/impl/TRechargeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/config/MybatisPlusConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/config/MybatisPlusConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/controller/SystemDictionaryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/controller/SystemDictionaryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/controller/SystemDictionaryItemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/controller/SystemDictionaryItemController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/controller/TLoginLogController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/controller/TLoginLogController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/controller/TRechargeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/controller/TRechargeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/service/TLoginLogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/service/TLoginLogService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/service/TRechargeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/service/TRechargeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/service/impl/TBankCardServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/service/impl/TBankCardServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/service/impl/TLoginLogServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/service/impl/TLoginLogServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/service/impl/TRechargeServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixie-system/target/classes/com/yixue/loxc/system/service/impl/TRechargeServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-cloud-consuner/src/main/java/com/yixue/loxc/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-cloud-consuner/src/main/java/com/yixue/loxc/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-cloud-consuner/target/classes/com/yixue/loxc/user/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-cloud-consuner/target/classes/com/yixue/loxc/user/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-pojo/src/main/java/com/yixue/loxc/pojo/vo/LiuShuiVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-pojo/src/main/java/com/yixue/loxc/pojo/vo/LiuShuiVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-pojo/src/main/java/com/yixue/loxc/pojo/vo/LoginLogVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-pojo/src/main/java/com/yixue/loxc/pojo/vo/LoginLogVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-pojo/src/main/java/com/yixue/loxc/pojo/vo/RechargeVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-pojo/src/main/java/com/yixue/loxc/pojo/vo/RechargeVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-pojo/src/main/java/com/yixue/loxc/pojo/vo/StatetVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-pojo/src/main/java/com/yixue/loxc/pojo/vo/StatetVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-pojo/src/main/java/com/yixue/loxc/pojo/vo/WithdrawVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-pojo/src/main/java/com/yixue/loxc/pojo/vo/WithdrawVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-pojo/src/main/java/com/yixue/loxc/vo/UserVO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-pojo/target/classes/com/yixue/loxc/pojo/vo/LiuShuiVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-pojo/target/classes/com/yixue/loxc/pojo/vo/LiuShuiVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-pojo/target/classes/com/yixue/loxc/pojo/vo/LoginLogVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-pojo/target/classes/com/yixue/loxc/pojo/vo/LoginLogVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-pojo/target/classes/com/yixue/loxc/pojo/vo/StatetVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-pojo/target/classes/com/yixue/loxc/pojo/vo/StatetVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-pojo/target/classes/com/yixue/loxc/pojo/vo/WithdrawVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-pojo/target/classes/com/yixue/loxc/pojo/vo/WithdrawVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-pojo/target/classes/com/yixue/loxc/vo/UserVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/UserMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/UserMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/controller/RechargeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/controller/RechargeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/controller/UserAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/controller/UserAccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/controller/UserBankcardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/controller/UserBankcardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/controller/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/controller/UserInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/controller/UserWalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/controller/UserWalletController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/controller/UserWithdrawController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/controller/UserWithdrawController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/dao/TLoginLogDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/dao/TLoginLogDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/dao/UserAccountDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/dao/UserAccountDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/dao/UserInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/dao/UserInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/dao/UserWalletDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/dao/UserWalletDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/TLoginLogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/TLoginLogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/TRechargeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/TRechargeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/UserAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/UserAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/UserInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/UserInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/UserWalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/UserWalletService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/impl/TBankCardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/impl/TBankCardServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/impl/TLoginLogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/impl/TLoginLogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/impl/TRechargeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/impl/TRechargeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/impl/UserAccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/impl/UserAccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/impl/UserWalletServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/impl/UserWalletServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/impl/WithdrawServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/java/com/yixue/loxc/user/service/impl/WithdrawServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/resources/src/views/modules/user/useraccount-add-or-update.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/resources/src/views/modules/user/useraccount.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/resources/src/views/modules/user/userinfo-add-or-update.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/resources/src/views/modules/user/userinfo.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/resources/src/views/modules/user/userwallet-add-or-update.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/src/main/resources/src/views/modules/user/userwallet.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/controller/RechargeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/controller/RechargeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/controller/UserAccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/controller/UserAccountController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/controller/UserBankcardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/controller/UserBankcardController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/controller/UserInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/controller/UserInfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/controller/UserWalletController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/controller/UserWalletController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/controller/UserWithdrawController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/controller/UserWithdrawController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/dao/UserWalletDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/dao/UserWalletDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/TLoginLogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/TLoginLogService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/TRechargeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/TRechargeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/UserWalletService.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/UserWalletService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/impl/TLoginLogServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/impl/TLoginLogServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/impl/TRechargeServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/impl/TRechargeServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/impl/UserAccountServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/impl/UserAccountServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/impl/UserWalletServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/impl/UserWalletServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/impl/WithdrawServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yixue-users/target/classes/com/yixue/loxc/user/service/impl/WithdrawServiceImpl.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:/apache-maven-3.6.0" />
+        <option name="userSettingsFile" value="D:\apache-maven-3.6.0\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1fttTycfLo9GruyFZyARMIFwsnw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunManager" selected="Spring Boot.ConsunerMain">
+    <configuration name="ConsunerMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yixue-cloud-consuner" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yixue.loxc.ConsunerMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoanMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yixue-loan" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yixue.loxc.loan.LoanMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RepaymentMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yixie-repayment" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yixue.loxc.repayment.RepaymentMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="System" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yixie-system" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yixue.loxc.System" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yixue-users" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yixue.loxc.user.UserMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="bidMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yixue-bid" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yixue.loxc.bid.bidMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="makeMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yixue-mark" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yixue.loxc.make.makeMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f4d24430-a7eb-42b4-9d4a-287e87ba6276" name="Default Changelist" comment="" />
+      <created>1597049227027</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597049227027</updated>
+      <workItem from="1597049231086" duration="3776000" />
+      <workItem from="1597106059550" duration="17376000" />
+      <workItem from="1597201809678" duration="4256000" />
+      <workItem from="1597217454377" duration="3471000" />
+      <workItem from="1597281919864" duration="2443000" />
+      <workItem from="1597368695515" duration="12922000" />
+      <workItem from="1597453279623" duration="375000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="495" y="150" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597110589493">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="495" y="150" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1597110589493" />
+    <state x="649" y="142" key="FileChooserDialogImpl" timestamp="1597213775476">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="649" y="142" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1597213775476" />
+    <state width="1242" height="267" key="GridCell.Tab.0.bottom" timestamp="1597453431509">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1242" height="267" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597453431509" />
+    <state width="1242" height="267" key="GridCell.Tab.0.center" timestamp="1597453431509">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1242" height="267" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597453431509" />
+    <state width="1242" height="267" key="GridCell.Tab.0.left" timestamp="1597453431509">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1242" height="267" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597453431509" />
+    <state width="1242" height="267" key="GridCell.Tab.0.right" timestamp="1597453431509">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1242" height="267" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597453431509" />
+    <state width="1242" height="267" key="GridCell.Tab.1.bottom" timestamp="1597453431509">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1242" height="267" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597453431509" />
+    <state width="1242" height="267" key="GridCell.Tab.1.center" timestamp="1597453431509">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1242" height="267" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1597453431509" />
+    <state width="1242" height="267" key="GridCell.Tab.1.left" timestamp="1597453431509">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1242" height="267" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1597453431509" />
+    <state width="1242" height="267" key="GridCell.Tab.1.right" timestamp="1597453431509">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1242" height="267" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1597453431509" />
+    <state x="294" y="113" key="SettingsEditor" timestamp="1597059490843">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="294" y="113" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1597059490843" />
+    <state x="256" y="184" key="run.anything.popup" timestamp="1597391307227">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="256" y="184" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1597391307227" />
+    <state x="512" y="146" width="672" height="678" key="search.everywhere.popup" timestamp="1597394497834">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="512" y="146" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1597394497834" />
+  </component>
+</project>

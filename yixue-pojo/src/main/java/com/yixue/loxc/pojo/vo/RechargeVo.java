@@ -11,4 +11,5 @@ public class RechargeVo {
     private String username;
     private String bankCardId;
     private String realname;
+
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/yixie-repayment/yixie-repayment.iml" filepath="$PROJECT_DIR$/yixie-repayment/yixie-repayment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yixie-system/yixie-system.iml" filepath="$PROJECT_DIR$/yixie-system/yixie-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yixue.iml" filepath="$PROJECT_DIR$/yixue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yixue-bid/yixue-bid.iml" filepath="$PROJECT_DIR$/yixue-bid/yixue-bid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yixue-cloud-consuner/yixue-cloud-consuner.iml" filepath="$PROJECT_DIR$/yixue-cloud-consuner/yixue-cloud-consuner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yixue-commons/yixue-commons.iml" filepath="$PROJECT_DIR$/yixue-commons/yixue-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yixue-loan/yixue-loan.iml" filepath="$PROJECT_DIR$/yixue-loan/yixue-loan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yixue-mark/yixue-mark.iml" filepath="$PROJECT_DIR$/yixue-mark/yixue-mark.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yixue-pojo/yixue-pojo.iml" filepath="$PROJECT_DIR$/yixue-pojo/yixue-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yixue-users/yixue-users.iml" filepath="$PROJECT_DIR$/yixue-users/yixue-users.iml" />
+    </modules>
+  </component>
+</project>

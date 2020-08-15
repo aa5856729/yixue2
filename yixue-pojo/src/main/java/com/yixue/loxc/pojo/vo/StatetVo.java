@@ -1,6 +1,7 @@
 package com.yixue.loxc.pojo.vo;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -8,8 +9,10 @@ import java.util.Date;
 public class StatetVo {
 
     private String userId;
-    private int   state;
+    private Integer   state;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date  beginDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date   endDate;
     private Integer currentPage;
 }

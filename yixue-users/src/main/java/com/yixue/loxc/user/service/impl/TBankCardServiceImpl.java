@@ -17,14 +17,14 @@ public class TBankCardServiceImpl implements TBankCardService {
     @Override
     public TBankCardEntity getBank(String id) {
 
-        return  tBankCardDao.selectOne(new QueryWrapper<TBankCardEntity>().eq("user_id",id));
+        return tBankCardDao.selectOne(new QueryWrapper<TBankCardEntity>().eq("user_id", id));
     }
 
     @Override
     public Boolean addBank(TBankCardEntity tBankCardEntity) {
 
         int i = tBankCardDao.insert(tBankCardEntity);
-        if (i>0){
+        if (i > 0) {
             return true;
         }
         return false;

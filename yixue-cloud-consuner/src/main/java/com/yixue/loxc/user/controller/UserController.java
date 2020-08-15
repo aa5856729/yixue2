@@ -1,29 +1,24 @@
 package com.yixue.loxc.user.controller;
 
 import com.yixue.loxc.pojo.Result;
-import com.yixue.loxc.pojo.entity.TRechargeEntity;
-import com.yixue.loxc.pojo.entity.TUserAccountEntity;
-import com.yixue.loxc.pojo.entity.TWithdrawEntity;
-import com.yixue.loxc.vo.UserVO;
+import com.yixue.loxc.pojo.entity.*;
+import com.yixue.loxc.pojo.vo.LiuShuiVo;
+import com.yixue.loxc.pojo.vo.UserVo;
+import com.yixue.loxc.pojo.vo.WithdrawVo;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 
-/**
- * @Author: Liu
- * @Description: TODO
- * @Date: 2020/08/08 14:40
- */
+
 @RestController
 @CrossOrigin
 @RequestMapping("/user")
 public class UserController {
 
-    private static final String PAYMENT_URL = "http://localhost:8081";
+    private static final String PAYMENT_URL = "http://localhost:9001";
 
     @Resource
     private RestTemplate restTemplate;
@@ -32,7 +27,7 @@ public class UserController {
      * 登录
      */
     @PostMapping(value = "/login", produces = "application/json")
-    public Result<TUserAccountEntity> login(UserVO userVO, HttpServletRequest request) {
+    public Result<TUserAccountEntity> login(UserVo userVo, HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
         System.out.println("x-forwarded-for ip: " + ip);
         if (ip != null && ip.length() != 0 && !"unknown".equalsIgnoreCase(ip)) {
@@ -60,9 +55,9 @@ public class UserController {
             ip = request.getRemoteAddr();
         }
         System.out.println("获取客户端ip: " + ip);
-        userVO.setIp(ip);
+        userVo.setIp(ip);
 
-        return restTemplate.postForObject(PAYMENT_URL + "/login",userVO,Result.class);
+        return restTemplate.postForObject(PAYMENT_URL + "/login",userVo,Result.class);
     }
 
     /**
@@ -70,8 +65,8 @@ public class UserController {
      * @return
      */
     @PostMapping("/register")
-    public Result<TUserAccountEntity> register(UserVO userVO){
-        return restTemplate.postForObject(PAYMENT_URL + "/register",userVO,Result.class);
+    public Result<TUserAccountEntity> register(UserVo userVo){
+        return restTemplate.postForObject(PAYMENT_URL + "/register",userVo,Result.class);
     }
 
     /**
@@ -83,9 +78,10 @@ public class UserController {
     }
 
     @PostMapping("/accountflow/query")
-    public Result<TRechargeEntity> query(@RequestBody UserVO userVO) throws ParseException {
-        return restTemplate.postForObject(PAYMENT_URL + "/accountflow/query",userVO,Result.class);
+    public Result<TRechargeEntity> query(LiuShuiVo liuShuiVo) throws ParseException {
+        return restTemplate.postForObject(PAYMENT_URL + "/accountflow/query",liuShuiVo,Result.class);
     }
+
 
     /**
      * 绑定银行卡数据初始化
@@ -93,8 +89,36 @@ public class UserController {
      * @return
      */
     @PostMapping("/bankcard/get/{id}")
-    public Result<TWithdrawEntity> get(@PathVariable String id){
-        return restTemplate.getForObject(PAYMENT_URL + "/bankcard/get/" + id,Result.class);
+    public Result<TWithdrawEntity> get(@PathVariable("id") String id){
+        return restTemplate.postForObject(PAYMENT_URL + "/bankcard/get/" + id,id,Result.class);
+    }
+
+    @PostMapping("/bankcard/add")
+    public Result<TWithdrawEntity> addBank(TBankCardEntity tBankCardEntity){
+        return restTemplate.postForObject(PAYMENT_URL + "/bankcard/add",tBankCardEntity,Result.class);
+    }
+
+    @GetMapping("/userinfo/get/{id}")
+    public Result<TUserInfoEntity> getinfo(@PathVariable("id") String id){
+        System.out.println(id);
+        return restTemplate.getForObject(PAYMENT_URL + "/userinfo/get/" + id,Result.class);
+    }
+
+    @PostMapping("/userinfo/update")
+    public Result<TUserInfoEntity> update(TUserInfoEntity userInfoEntity){
+        return restTemplate.postForObject(PAYMENT_URL + "/userinfo/update",userInfoEntity,Result.class);
+    }
+
+    @PostMapping("/wallet/get/{id}")
+    public Result<TUserWalletEntity> getUser(@PathVariable("id") String id){
+        System.out.println("=====================================sbsbsbid"+id);
+        return restTemplate.postForObject(PAYMENT_URL+"/wallet/get/"+id,id,Result.class);
+//        return restTemplate.postForObject(PAYMENT_URL+"/wallet/get/"+id,Result.class);
+    }
+
+    @PostMapping("/withdraw/add")
+    public Result add(WithdrawVo withdrawVo){
+        return restTemplate.postForObject(PAYMENT_URL + "/withdraw/add",withdrawVo,Result.class);
     }
 
 }

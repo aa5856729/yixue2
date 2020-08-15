@@ -1,6 +1,10 @@
 package com.yixue.loxc.user.service;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
 import com.yixue.loxc.pojo.entity.TUserWalletEntity;
+
+import java.util.Map;
 
 /**
  * @author chenshun
@@ -9,8 +13,8 @@ import com.yixue.loxc.pojo.entity.TUserWalletEntity;
  */
 public interface UserWalletService {
 
+
     TUserWalletEntity getwallet(String id);
 
-    public boolean update(TUserWalletEntity tUserWalletEntity);
-
 }
+

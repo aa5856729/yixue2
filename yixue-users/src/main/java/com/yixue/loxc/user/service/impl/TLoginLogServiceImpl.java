@@ -16,14 +16,14 @@ public class TLoginLogServiceImpl implements TLoginLogService {
     TLoginLogDao tLoginLogDao;
 
     @Override
-    public int addlog(String username, Integer start, String ip) {
+    public int addlog(String username, Integer start, String ip, Integer accountType) {
 
-        TLoginLogEntity loginLogEntity=new TLoginLogEntity();
+        TLoginLogEntity loginLogEntity = new TLoginLogEntity();
         loginLogEntity.setUsername(username);
         loginLogEntity.setLoginResult(start);
         loginLogEntity.setIp(ip);
         loginLogEntity.setLoginTime(new Date());
-        loginLogEntity.setAccountType(1);
+        loginLogEntity.setAccountType(accountType);
         loginLogEntity.setCreateTime(new Date());
 
         int i = tLoginLogDao.insert(loginLogEntity);

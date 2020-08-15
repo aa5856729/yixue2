@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/yixie-repayment/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixie-repayment/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixie-system/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixie-system/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixue-bid/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixue-bid/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixue-cloud-consuner/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixue-cloud-consuner/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixue-commons/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixue-loan/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixue-loan/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixue-mark/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixue-mark/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixue-pojo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixue-users/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yixue-users/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

@@ -11,5 +11,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserWalletDao extends BaseMapper<TUserWalletEntity> {
-    public Integer update(TUserWalletEntity tUserWalletEntity);
+
 }

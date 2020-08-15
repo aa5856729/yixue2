@@ -1,7 +1,6 @@
 package com.yixue.loxc.system.controller;
 
 
-
 import com.yixue.loxc.system.service.SystemDictionaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,8 +12,6 @@ import java.util.List;
 
 
 /**
- * 
- *
  * @author chenshun
  * @email sunlightcs@gmail.com
  * @date 2020-06-12 10:00:41
@@ -27,10 +24,6 @@ public class SystemDictionaryController {
      */
     @Autowired
     private SystemDictionaryService SystemDictionaryService;
-
-
-
-
 
 
 }

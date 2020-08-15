@@ -1,11 +1,11 @@
 package com.yixue.loxc.user.controller;
 
-import com.yixue.loxc.commons.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yixue.loxc.pojo.Result;
 import com.yixue.loxc.pojo.entity.TRechargeEntity;
 import com.yixue.loxc.pojo.vo.LiuShuiVo;
+import com.yixue.loxc.pojo.vo.PageRelust;
 import com.yixue.loxc.user.service.TRechargeService;
-import com.yixue.loxc.vo.UserVO;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -14,27 +14,34 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 @RestController
+@RequestMapping("/accountflow")
 @CrossOrigin
 public class RechargeController {
 
     @Resource
     TRechargeService tRechargeService;
 
-    @PostMapping("/accountflow/query")
-    public Result<TRechargeEntity> query(@RequestBody UserVO userVO) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd ");
-        LiuShuiVo liuShuiVo=new LiuShuiVo();
-        liuShuiVo.setUserId(userVO.getUserId());
-        if (userVO.getBeginDate()!=null){
-            liuShuiVo.setBeginDate(dateFormat.parse(userVO.getBeginDate()));
-            liuShuiVo.setEndDate(dateFormat.parse(userVO.getEndDate()));
-            liuShuiVo.setCurrentPage(Integer.parseInt(userVO.getCurrentPage()));
-        }
+    @PostMapping("/query")
+    public Result<TRechargeEntity> query(@RequestBody LiuShuiVo liuShuiVo) throws ParseException {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd ");
+//        LiuShuiVo liuShuiVo = new LiuShuiVo();
+//        liuShuiVo.setUserId(userId);
+//        if (beginDate != null) {
+//            liuShuiVo.setBeginDate(dateFormat.parse(beginDate));
+//            liuShuiVo.setEndDate(dateFormat.parse(endDate));
+//            liuShuiVo.setCurrentPage(Integer.parseInt(currentPage));
+//        }
 
-         Page<TRechargeEntity> rechargeEntityList=tRechargeService.selectRecharge(liuShuiVo);
-         if (rechargeEntityList !=null){
-             return new Result(200,"数据加载成功",rechargeEntityList);
-         }
-        return new Result(200,"数据加载失败");
+        IPage<TRechargeEntity> iPage = tRechargeService.selectRecharge(liuShuiVo);
+        if (iPage.getRecords() != null) {
+            PageRelust<TRechargeEntity> page=new PageRelust<>();
+            page.setListData(iPage.getRecords());
+            System.err.println("iPage.getCurrent()=="+iPage.getCurrent()+"===iPage.getSize()"+iPage.getSize()+"===iPage.getPages()"+iPage.getPages()+"====iPage.getTotal()="+iPage.getTotal());
+            page.setCurrentPage((int)iPage.getCurrent());
+            page.setTotalPage((int)iPage.getPages()==0?1:(int)iPage.getPages());
+            return new Result(200, "数据加载成功", page);
+
+        }
+        return new Result(200, "数据加载失败");
     }
 }

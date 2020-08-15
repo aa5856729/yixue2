@@ -12,6 +12,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @MapperScan(basePackages = "com.yixue.loxc.user.dao")
 public class UserMain {
     public static void main(String[] args) {
-        SpringApplication.run(UserMain.class,args);
+        SpringApplication.run(UserMain.class, args);
     }
 }

@@ -13,14 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 
 /**
- * 
- *
  * @author chenshun
  * @email sunlightcs@gmail.com
  * @date 2020-06-12 10:00:41
  */
 @RestController
-@RequestMapping("/system/dictionaryItem")
+@RequestMapping("/dictionaryItem")
 @CrossOrigin
 public class SystemDictionaryItemController {
     @Autowired
@@ -30,14 +28,14 @@ public class SystemDictionaryItemController {
      * 列表
      */
     @GetMapping("/getAll")
-    public Result<TSystemDictionaryItemEntity> getAll(){
+    public Result<TSystemDictionaryItemEntity> getSystemDictionaryAll() {
         System.out.println("进入Ststem===================");
-        List<TSystemDictionaryItemEntity> systemDictionaryItemList=SystemDictionaryItemService.getAll();
+        List<TSystemDictionaryItemEntity> systemDictionaryItemList = SystemDictionaryItemService.getAll();
         System.out.println(systemDictionaryItemList);
-        if (systemDictionaryItemList!=null){
-            return new Result(200,"加载成功",systemDictionaryItemList);
+        if (systemDictionaryItemList != null) {
+            return new Result(200, "加载成功", systemDictionaryItemList);
         }
-        return new Result(202,"数据加载失败");
+        return new Result(202, "数据加载失败");
     }
 
 
@@ -45,13 +43,13 @@ public class SystemDictionaryItemController {
      * 修改数据类型
      */
     @PostMapping("/updataitem")
-    public Result<TSystemDictionaryItemEntity>  UpdataItem(@RequestBody TSystemDictionaryItemEntity systemDictionaryItemEntity){
+    public Result<TSystemDictionaryItemEntity> UpdataItem(@RequestBody TSystemDictionaryItemEntity systemDictionaryItemEntity) {
 
-        Integer i=SystemDictionaryItemService.updataItem(systemDictionaryItemEntity);
-        if (i>0){
-            return new Result(200,"修改成功");
-        }else {
-            return new Result(202,"修改失败");
+        Integer i = SystemDictionaryItemService.updataItem(systemDictionaryItemEntity);
+        if (i > 0) {
+            return new Result(200, "修改成功");
+        } else {
+            return new Result(202, "修改失败");
         }
     }
 }

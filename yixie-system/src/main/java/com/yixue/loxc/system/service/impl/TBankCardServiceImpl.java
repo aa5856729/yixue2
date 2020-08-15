@@ -46,29 +46,29 @@ public class TBankCardServiceImpl implements TBankCardService {
     @Transactional
     public int updataBank(RechargeVo rechargeVo) {
         //对银行卡金额进行修改
-        QueryWrapper<TBankCardEntity> queryWrapper=new QueryWrapper<>();
-        queryWrapper.eq("user_id",rechargeVo.getUserId());
-        TBankCardEntity bankCardEntity=new TBankCardEntity();
+        QueryWrapper<TBankCardEntity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", rechargeVo.getUserId());
+        TBankCardEntity bankCardEntity = new TBankCardEntity();
         //查询用户余额
         //审核中审核通过才对金额进行添加
         TBankCardEntity selectbank = bankmoney(rechargeVo.getUserId());
 
-        bankCardEntity.setBalance(selectbank.getBalance()-rechargeVo.getAmount());
+        bankCardEntity.setBalance(selectbank.getBalance() - rechargeVo.getAmount());
         int update = tBankCardDao.update(bankCardEntity, queryWrapper);
 
 
         //查询账户余额
-        TUserWalletEntity walletEntity = tUserwalletDao.selectById(rechargeVo.getUserId());//通过id进行查询
+        //TUserWalletEntity walletEntity = tUserwalletDao.selectById(rechargeVo.getUserId());//通过id进行查询
         //对账户金额进行添加
-        TUserWalletEntity tUserWalletEntity=new TUserWalletEntity();
-        tUserWalletEntity.setAccountId(rechargeVo.getUserId());  //用户id;
-        tUserWalletEntity.setAvailableAmount(walletEntity.getAvailableAmount()+rechargeVo.getAmount());
+//        TUserWalletEntity tUserWalletEntity=new TUserWalletEntity();
+//        tUserWalletEntity.setAccountId(rechargeVo.getUserId());  //用户id;
+//        tUserWalletEntity.setAvailableAmount(walletEntity.getAvailableAmount()+rechargeVo.getAmount());
 
 
-        tUserwalletDao.updateById(tUserWalletEntity);
+        //tUserwalletDao.updateById(tUserWalletEntity);
 
         //在添加交易记录
-        TRechargeEntity tRecharge=new TRechargeEntity();
+        TRechargeEntity tRecharge = new TRechargeEntity();
         tRecharge.setAmount(rechargeVo.getAmount());
         tRecharge.setUserId(rechargeVo.getUserId());
         tRecharge.setBankCardId(rechargeVo.getBankCardId());
@@ -77,12 +77,11 @@ public class TBankCardServiceImpl implements TBankCardService {
         tRecharge.setCreateTime(new Date());
         tRecharge.setRechargeTime(new Date());
         tRecharge.setState(1); //审核状态( 0:审核拒绝  1:审核中  2:审核通过 )
-        tRecharge.setTradeNo(UUID.randomUUID().toString().substring(0,31));
-        tRecharge.setId(UUID.randomUUID().toString().substring(0,31));
+        tRecharge.setTradeNo(UUID.randomUUID().toString().substring(0, 31));
+        tRecharge.setId(UUID.randomUUID().toString().substring(0, 31));
 
         //充值流水记录
         tRechargeDao.insert(tRecharge);
-
 
 
         return update;
@@ -92,6 +91,6 @@ public class TBankCardServiceImpl implements TBankCardService {
     @Override
     public TBankCardEntity bankmoney(String bankCardId) {
 
-        return tBankCardDao.selectOne(new QueryWrapper<TBankCardEntity>().eq("user_id",bankCardId));
+        return tBankCardDao.selectOne(new QueryWrapper<TBankCardEntity>().eq("user_id", bankCardId));
     }
 }

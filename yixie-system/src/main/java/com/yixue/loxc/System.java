@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @MapperScan(basePackages = "com.yixue.loxc.system.dao")
 public class System {
-    public static void main(String []args){
-        SpringApplication.run(System.class,args);
+    public static void main(String[] args) {
+        SpringApplication.run(System.class, args);
     }
 }
